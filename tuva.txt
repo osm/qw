@@ -1,0 +1,59 @@
+Tuva - QuakeWorld IP Spoofer
+Copyright (C) Oscar Linderholm <slime@home.se>
+
+FAQ
+---
+
+Q: Who is Tuva?
+A: She is a spoofing utility for QuakeWorld.
+
+Q: Tuva does not work in Windows 9x, why?
+A: She uses raw sockets and that is only available in Windows 2000 and Windows XP by default.
+
+Q: Ok, How do I run her?
+A: You have three options
+
+    1) Make Tuva spoof packets her self:
+    
+	         A              B                   C
+	     -------- -------------------- --------------------
+	tuva -l 27500 -s 192.168.1.1:27001 -d 192.168.1.2:27500
+
+	A) This is the port she will listen on (where you connect your qw client)
+	B) This is the IP and port you will spoof
+	C) This is the server you want to connect to (qw server, qizmo, etc)
+
+    2) Make Tuva spoof packets through a gateway:
+	
+	         A              B                   C                   D
+	     -------- -------------------- -------------------- --------------------
+	tuva -l 27500 -s 192.168.1.1:27001 -d 192.168.1.2:27500 -g 192.168.1.3:27500
+
+	A) This is the port she will listen on (where you connect your qw client)
+	B) This is the IP and port you will spoof
+	C) This is the server you want to connect to (qw server, qizmo, etc)
+	D) This is the IP and port to the Tuva gateway, this host will send the spoofed packets for you.
+
+    3) Make Tuva act as the spoofing gateway:
+
+	        A
+	     --------
+	tuva -a 27500
+
+	A) This is what port number she will be listening on (-g 192.168.1.3:27500)
+
+
+Q: I get multiple "Unknown command "-tuva-"", why?
+A: There can be many reasons for this, but the problem is that the proxy can not send the spoofed packet to the server.
+
+Q: How do I know if I can send spoofed packets?
+A: This question is out of the scope for this document. 
+
+Q: Why did you code Tuva?
+A: ParadokS banned me from the swedish servers at Bredbandbolaget. I dont think I deserved to be banned so I had to find a solution to my problem, and here she is.
+
+Q: Where do I report bugs?
+A: There are no bugs in Tuva, she is perfect.
+
+Q: Where do I send fan mails?
+A: paradoks@slackers.dk

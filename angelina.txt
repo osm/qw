@@ -1,0 +1,50 @@
+Angelina - QuakeWorld Timing Utility
+(c) Oscar Linderholm - slime@home.se & Nikolai Qveflander - akke@musiker.nu 
+
+
+FAQ
+---
+
+Q: Who is Angelina?
+A: She is a timer utility primarily for QuakeWorld.
+
+Q: But that's cheating?
+A: No. Many players already use stopwatches/timers/eggclocks/whatever. The only advantage Angelina has over other timers is that she is easily accessed and controlled from the QuakeWorld command line.
+
+Q: So how do I compile Angelina in *nix?
+A: Extract the archive, then compile it with "make".
+
+Q: And in Windows?
+A: Extract the archive, create a simple project in Visual Studio or similar. Add angelina.c to the project and link with ws2_32.lib. Then compile and you are all set.
+
+Q: Ok, I've compiled Angelina, how do I start her?
+A: Just run the binary. If you want to change port, specify the -p parameter. To make Angelina listen on port 28000, you type:
+
+	Angelina -p 28000
+	
+Default is 27500.
+
+Q: How can I control her from QuakeWorld?
+A: Exec angelina.cfg to load the default aliases. To send commands to Angelina you use the following syntax: 
+
+	/packet "127.0.0.1:port command"
+
+Port is the port Angelina is listening on. The first command you should use is "start<time>" where <time> is the optional time in seconds to set the timer to. If <time> is not specified, time will be set to 1205 seconds (20 minutes and 5 seconds). Maximum value of the timer is 1 hour (3600 seconds). A few examples:
+
+	/packet "127.0.0.1:port start"		- Sets the timer to default value (1205 seconds) and begins countdown.
+	/packet "127.0.0.1:port start605"	- Sets the timer to 605 seconds and begins countdown.
+
+To check the timer from QuakeWorld you use the command "status". To send it, use the following syntax:
+
+	/packet "127.0.0.1:port status"
+
+Angelina will then report back the current time left of the timer.
+
+Q: Btw, why isn't there automatic timers for quad, pent and so on?
+A: Angelina is not meant to be a cheat, thus there will never be such features.
+
+Q: Where to report bugs?
+A: There are no bugs in Angelina, she is perfect.
+
+Q: Ok, that was a very good guide, I love you man.
+A: Thanks dude.
