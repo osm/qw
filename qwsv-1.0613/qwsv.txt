@@ -1,0 +1,13 @@
+QWSV Notes (June.13.1997 Release)
+----------------------------------
+ 
+ Please refer to
+
+ http://qwcentral.stomped.com
+
+ for documentation.
+
+ Server operators wishing to link to our master server at id, please use;
+
+ qwsv +setmaster 192.246.40.12.
+

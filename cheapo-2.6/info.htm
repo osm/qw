@@ -1,0 +1,585 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Sami Tammilehto">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (Win95; I) [Netscape]">
+   <TITLE>QuakeWorld Enhancements</TITLE>
+</HEAD>
+<BODY TEXT="#CCCCCC" BGCOLOR="#660000" LINK="#FF6666" VLINK="#CC66CC" ALINK="#FF6666">
+
+<CENTER><B><FONT COLOR="#FFFFFF"><FONT SIZE=+3>Cheapo</FONT></FONT></B></CENTER>
+
+<CENTER><FONT SIZE=+1>A freeware QuakeWorld 2.1-2.3 proxy</FONT></CENTER>
+
+<CENTER><FONT SIZE=+1>Copyright (C) 1998 Sami Tammilehto</FONT></CENTER>
+
+<CENTER><FONT SIZE=+1>&nbsp;</FONT></CENTER>
+
+<CENTER><FONT COLOR="#FFFF00"><FONT SIZE=+1>[ <A HREF="cheapo.htm">News</A>
+| Information | <A HREF="faq.htm">FAQ</A> | <A HREF="feedback.htm">Feedback</A>
+| <A HREF="download.htm">Download</A> ]</FONT></FONT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+<B><FONT COLOR="#FFFFFF">&nbsp;</FONT></B>
+<BR><B><FONT COLOR="#FFFF00"><FONT SIZE=+1>What is Cheapo and what can
+it do?</FONT></FONT></B>
+<BR>Cheapo is a proxy that can be used to route QuakeWorld network traffic.
+Additionally, the proxy can modify the data and has features for enhancing
+gameplay. You can connect to cheapo as if it were a Quakeworld server,
+and then give it commands that forward you to a real server. You can also
+go through multiple proxies, if you like. The most common way to use a
+proxy is to run it on the local computer, just to get access to the gameplay
+features. The proxy can also be run on a firewall machine incapable of
+handling Quake traffic, so that machines inside the firewall can be used
+for playing. See the <A HREF="#features">features list</A> for the gameplay
+enhancements.
+<BR>&nbsp;
+
+<P><B><FONT COLOR="#FFFF00"><FONT SIZE=+1>Some Background</FONT></FONT></B>
+<BR>I personally needed a QuakeWorld proxy to get through a firewall, and
+decided to build one when I heard that the new QuakeWorld will be incompatible
+(and thus the excellent FAQ-proxy would stop working). Now that the proxy
+has stabilized a bit and many people have asked me to publish it, I have
+decided to do so. However, please remember that this started out as a personal
+experiment, and is still pretty much that. So I add features and fix bugs
+that I personally feel are most important. In any case I do plan on keeping
+this proxy up to date at least in the near future. Also note, that this
+proxy has been mostly tested in DeathMatch play, so problems with TF, CTF
+or other addons are more possible.
+<BR>&nbsp;
+
+<P><B><FONT COLOR="#FFFF00"><FONT SIZE=+1>How much does it cost</FONT></FONT></B>
+<BR>It doesn't cost anything. Howerver, nothing is really free. Since there
+is no real support, and the documentation is very limited, it means you
+have to work harder to get things working smoothly. And you might encounter
+unexpected problems. Or your computer could be blown to bits (just kidding,
+but hey, everything is possible). If you want the security of a well tested
+product, try the other link on the <A HREF="index.htm">main page</A>.
+<BR>&nbsp;
+
+<P><B><FONT COLOR="#FFFF00"><FONT SIZE=+1>How to use it</FONT></FONT></B>
+<BR>I can really only recommend Cheapo if you have previous experience
+with QuakeWorld proxies. In that case installing and using it should be
+a breeze. Still, here are some quick instructions:
+<UL>
+<LI>
+download the file (see end of page) and unzip it somewhere</LI>
+
+<LI>
+execute <TT>cheapo</TT></LI>
+
+<LI>
+start up quakeworld</LI>
+
+<LI>
+type in the console: "<TT>connect localhost</TT>", the proxy should now
+respond</LI>
+
+<LI>
+connect to another server by typing: "<TT>.connect name.of.server</TT>"&nbsp;
+(note the dot before connect)</LI>
+
+<LI>
+to disconnect from the server, but not the proxy, type: "<TT>.disconnect</TT>"</LI>
+
+<LI>
+to disconnect from the proxy, just type the normal: "<TT>disconnect</TT>"</LI>
+</UL>
+By typing "<TT>.help"</TT> in the console you get the list of all supported
+command. More help for a particular command is available with "<TT>.help
+command"</TT> . All the documentation (which isn't much) is available through
+this help command. Communication with the proxy is done by talking to it,
+so if you make cfg-files, remember to use '<TT>say .command</TT>' and not
+just '<TT>.command</TT>'. Also note that you can define an alias named
+<TT>proxyautoexec</TT> in your own config. This is executed by the proxy
+whenever you connect to it.
+
+<P>All proxy commands are prefixed with <TT>.</TT> (dot) to distinquish
+them from everything else. Normally the proxy also recognizes commands
+prefixed with <TT>proxy:</TT> or <TT>hostname:</TT> so to connect you could
+type: "<TT>.connect"</TT> or <TT>"proxy:connect"</TT> or <TT>"xyz:connect"</TT>
+(if the computer's hostname is xyz). If you are going to a server through
+multiple proxies, the prefixes start to matter. Commands with the dot-prefix
+always go to the nearest proxy (so use .command for setting up powerup
+times and the like), and commands with the proxy:-prefix go to the last
+proxy (so use proxy:connect for connecting). Using the hostname-prefix
+of course affects the proxy with that hostname.
+<BR>&nbsp;
+
+<P><A NAME="features"></A><B><FONT COLOR="#FFFF00"><FONT SIZE=+1>Features</FONT></FONT></B>
+<BR>The easiest way to give a summary of features is to just list the command
+the proxy supports. Although this list might get outdated (or is already),
+it's still pretty close. It is possible that some commands change in the
+future. You have been warned.
+<BR>&nbsp;
+<BR><B>Connecting</B>
+<TABLE WIDTH="100%" >
+<TR>
+<TD WIDTH="25%">connect</TD>
+
+<TD>connect to a QuakeWorld server or a new proxy</TD>
+</TR>
+
+<TR>
+<TD>disconnect</TD>
+
+<TD>disconnect from where you were connected to (but not from the proxy
+itself)</TD>
+</TR>
+
+<TR>
+<TD>reconnect</TD>
+
+<TD>reconnect to last address you were (or are) connected to.</TD>
+</TR>
+
+<TR>
+<TD>users</TD>
+
+<TD>list users in this proxy</TD>
+</TR>
+
+<TR>
+<TD>name</TD>
+
+<TD>rename the proxy (changes the proxy:-prefix)</TD>
+</TR>
+</TABLE>
+&nbsp;
+<BR><B>Powerup Camping / HUD</B>
+<TABLE WIDTH="100%" >
+<TR>
+<TD WIDTH="25%">line&nbsp;</TD>
+
+<TD>change what screen line the timers appear on</TD>
+</TR>
+
+<TR>
+<TD>camp</TD>
+
+<TD>select what items are timed (none, quad, pent and/or ring)</TD>
+</TR>
+
+<TR>
+<TD>remind&nbsp;</TD>
+
+<TD>remind of soon appearing powerups with a text near center of the screen</TD>
+</TR>
+
+<TR>
+<TD>guess</TD>
+
+<TD>guess powerup pickup times (assume picked when appears or someone says
+so)</TD>
+</TR>
+
+<TR>
+<TD>move</TD>
+
+<TD>move small centerprint messages downward away from crosshair</TD>
+</TR>
+
+<TR>
+<TD>notimers</TD>
+
+<TD>disable powerup timers for this proxy session</TD>
+</TR>
+</TABLE>
+&nbsp;
+<BR><B>Teamplay</B>
+<TABLE WIDTH="100%" >
+<TR>
+<TD WIDTH="25%">who&nbsp;</TD>
+
+<TD>list who is on the server with skins and teams (like Kombat Teams who
+/ whoskin)</TD>
+</TR>
+
+<TR>
+<TD>mark</TD>
+
+<TD>give names to locations so you can use them in your messages.</TD>
+</TR>
+
+<TR>
+<TD>skin</TD>
+
+<TD>override skins of all players according to team</TD>
+</TR>
+
+<TR>
+<TD>color</TD>
+
+<TD>override colors of all players acoording to team</TD>
+</TR>
+
+<TR>
+<TD>point</TD>
+
+<TD>select what items you can point to (for messages like 'available rl
+at red armor')</TD>
+</TR>
+
+<TR>
+<TD>took</TD>
+
+<TD>select what items are reported (for messages like 'took ra at base')</TD>
+</TR>
+
+<TR>
+<TD>report</TD>
+
+<TD>automatically report things (when you get a powerup, etc)</TD>
+</TR>
+
+<TR>
+<TD>sound</TD>
+
+<TD>soundtrigger, play sounds on teammates computers&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<BR><B>Miscellaneous</B>
+<TABLE WIDTH="100%" >
+<TR>
+<TD WIDTH="25%">fps&nbsp;</TD>
+
+<TD>remove things that slow down the framerate (like dynamic lighting and
+bodies)</TD>
+</TR>
+
+<TR>
+<TD>weapon</TD>
+
+<TD>if you select a weapon you don't have, try select the next best weapon
+with ammo</TD>
+</TR>
+
+<TR>
+<TD>track</TD>
+
+<TD>track a player in first person view (when you are a spectator). Works
+like Kombat Teams track.</TD>
+</TR>
+
+<TR>
+<TD>items</TD>
+
+<TD>list items in current map (to see how many quads etc, if your memory
+is failing you)</TD>
+</TR>
+
+<TR>
+<TD>cpps</TD>
+
+<TD>limit client packet rate (allows higher framerate on low bandwidth
+connections)</TD>
+</TR>
+
+<TR>
+<TD>flood</TD>
+
+<TD>flood protection protection (avoids the flood penalty)</TD>
+</TR>
+
+<TR>
+<TD>stat</TD>
+
+<TD>display communication statistics</TD>
+</TR>
+</TABLE>
+<B>&nbsp;</B>
+<BR><A NAME="percent"></A><B>%-commands you can add to your messages</B>
+<TABLE WIDTH="99%" >
+<TR>
+<TD WIDTH="25%"><TT>%A, %a, %[a]</TT></TD>
+
+<TD>information on your armor</TD>
+</TR>
+
+<TR>
+<TD><TT>%h, %[h]</TT></TD>
+
+<TD>information on your health</TD>
+</TR>
+
+<TR>
+<TD><TT>%w, %[w], %b, %[b]</TT></TD>
+
+<TD>current weapon and best weapon</TD>
+</TR>
+
+<TR>
+<TD><TT>%p, %[p]</TT></TD>
+
+<TD>powerups you have</TD>
+</TR>
+
+<TR>
+<TD><TT>%s</TT></TD>
+
+<TD>report things that are low (of armor, health, weapon)</TD>
+</TR>
+
+<TR>
+<TD><TT>%l&nbsp;</TT></TD>
+
+<TD>nearest location (see mark-command)</TD>
+</TR>
+
+<TR>
+<TD><TT>%d</TT></TD>
+
+<TD>location where you died the last time&nbsp;</TD>
+</TR>
+
+<TR>
+<TD><TT>%r</TT></TD>
+
+<TD>last reported location</TD>
+</TR>
+
+<TR>
+<TD><TT>%e, %o</TT></TD>
+
+<TD>number of enemies and teammates nearby</TD>
+</TR>
+
+<TR>
+<TD><TT>%L, %E, %O</TT></TD>
+
+<TD>like their lowercase versions, except that they remeber the situation
+before dying for 5 seconds.</TD>
+</TR>
+
+<TR>
+<TD><TT>%n</TT></TD>
+
+<TD>only show this message to nearby teammates (this is a note to other
+players' proxies to hide the mesage if they are far away)</TD>
+</TR>
+
+<TR>
+<TD><TT>%d</TT></TD>
+
+<TD>where you died for the last time</TD>
+</TR>
+
+<TR>
+<TD><TT>%L, %E, %O</TT></TD>
+
+<TD>like<TT> %l,%e,%o</TT> but after your death the status of the situation
+is frozen for 5 sec</TD>
+</TR>
+
+<TR>
+<TD><TT>%t, %x, %y</TT></TD>
+
+<TD>what you are pointing at (name at place, name, place)</TD>
+</TR>
+
+<TR>
+<TD><TT>%i, %j, %k&nbsp;</TT></TD>
+
+<TD>what you last picked up, what you last pointed, whichever happened
+latest</TD>
+</TR>
+
+<TR>
+<TD><TT>%m</TT></TD>
+
+<TD>like <TT>%k</TT>, or nearest item if nothing taken/pointed to in 10
+seconds</TD>
+</TR>
+
+<TR>
+<TD><TT>%q, %g</TT></TD>
+
+<TD>powerups last enemy you saw had, powerups that are about to appear</TD>
+</TR>
+
+<TR>
+<TD><TT>%S, %C</TT></TD>
+
+<TD>your skin and your bottomcolor</TD>
+</TR>
+
+<TR>
+<TD>f_report (alias)</TD>
+
+<TD>report your armor/health/weapon/powerups (uses the above)</TD>
+</TR>
+
+<TR>
+<TD>f_powerup (alias)</TD>
+
+<TD>report your powerups (in 'i have quad' style)</TD>
+</TR>
+
+<TR>
+<TD>f_took (alias)</TD>
+
+<TD>report you took an item (in 'took ra at base' style)</TD>
+</TR>
+</TABLE>
+&nbsp;
+<BR><A NAME="messages"></A><B><FONT COLOR="#FFFF00"><FONT SIZE=+1>What
+kind of team messages are possible with these %-commands?</FONT></FONT></B>
+<BR>To show how all these %-commands can be put to use, I have made a list
+of the teamplay aliases I am currently using. You can probably come up
+with even more ways to use these, but this list is a good starting point
+if you want some ideas. My goal has been to minimize the number of messages,
+but there are still quite a few. The left side shows the actual command
+bound to a key, and the right side shows an example of what it looks like
+in game.
+
+<P><B><I>First the classic binds:</I></B>
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">f_report</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">[a:0] h:100 rl:5</FONT></TT></B></TD>
+</TR>
+</TABLE>
+This is used to report your current health/armor/weapon status. It's used
+most often when there are many peoply near an armor and you have to decide
+who takes it (the one with lowest armor). This is only shown to visible
+teammates. Cheapo adds glowing braces [ ] around those parts of the message
+that are low to make them more easily visible. Armor and health is 'low'
+if it's under 50, weapon is 'low' if it's worse than a RL with 3 rockets,
+or a LG with 10 cells.
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team %l secured (%o-%e)</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">red armor secured (1-0)</FONT></TT></B></TD>
+</TR>
+</TABLE>
+To tell your teammates that you have an area under control. Of course it's
+preplanned what areas are being controlled and so on. The 1-0 means 1 teammate
+(you) and 0 enemies.
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team %L lost (%E enemies)</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">red armor lost (2 enemies)</FONT></TT></B></TD>
+</TR>
+</TABLE>
+To tell your teammates that control of an important area is lost. The uppercase
+%L and %E make this work even if I press it a few seconds after dying at
+the new spawn location.
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team help to %L!</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">help to red armor!</FONT></TT></B></TD>
+</TR>
+</TABLE>
+To ask for help when the situation is quickly getting worse. It's better
+to ask for help early than to be a hero and lose control to the enemy.
+It's also important that teammates come for help (that's what the next
+message is used for)!
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team coming from %l</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">coming from grenade</FONT></TT></B></TD>
+</TR>
+</TABLE>
+A reply when someone asks for help or is offering an item (the binds below)
+and you need it. The location is important so that the other person knows
+how far away you are.
+
+<P><B><I>Then some new binds that combine many of the older ones:</I></B>
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team "%t"</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">pack at grenade</FONT></TT></B></TD>
+</TR>
+</TABLE>
+The %t belongs to the pointing commands, and is very powerful. It can be
+used to report the precence of almost any item or player. All you have
+to do is point to the item and press this bind. The items considered for
+pointing can be adjusted with the .point command (default is powerups,
+armors, players, packs, rune/flag, megahealth, rl, gl, lg). Most often
+used to report that a pack with a rl (in DMM1 games) or that an armor is
+available. Of course you would only report when you don't need that item
+desperately yourself. Anyone who is near and wants the item should reply
+with 'coming from', in which case the other player guards the item. If
+nobody is coming in a few seconds, it's best to just take the item so the
+enemy doesn't get it. You can also use point to tell where you see an enemy
+(the proxy tells if the enemy has quad or penta too).
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team taken: %k</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">taken: pack at grenade</FONT></TT></B></TD>
+</TR>
+</TABLE>
+This is another multipurpose bind that can be used to report that you took
+an item, or that an item you said was available (by pointing) no longer
+is. The logic for %k is that it displays the name/location of the last
+item you either pointed to or collected yourself. If you want to separate
+the two cases, there are commands %i and %j for that.
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">f_powerup</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">i have quad pent</FONT></TT></B></TD>
+</TR>
+</TABLE>
+Used to report that you got a powerup. It will list all the powerups you
+have.
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team get %g (at %l)</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">get quad (at lower rl)</FONT></TT></B></TD>
+</TR>
+</TABLE>
+If your responsibility is to collect a certain powerup, and you are unable
+to do so, this is used to tell that someone else has to do it. The proxy
+will list all powerups appearing within 10 secs (if timers are enabled).
+If the proxy has no knowledge of powerup times, it will say quad (since
+this is the most common case).
+<BR>&nbsp;
+<TABLE CELLSPACING=0 CELLPADDING=0 COLS=2 WIDTH="100%" >
+<TR>
+<TD WIDTH="30%"><B><TT><FONT COLOR="#FFCC00">say_team enemy %q!</FONT></TT></B></TD>
+
+<TD><B><TT><FONT COLOR="#FFCC00">enemy pent!</FONT></TT></B></TD>
+</TR>
+</TABLE>
+Used to notify teammates of a powerupped enemy you saw. The proxy adds
+the powerups of the last seen enemy. In case the proxy has seen no enemies
+it will say quad (since again it's the most common case).
+
+<P><B><I>Additional notes:</I></B>
+<BR>If you don't like the new f_report style, you can redefine f_report
+with '<TT>alias f_report say_team '%Aa:%a h:%h %b %p %n</TT>' which was
+the one used by FAQ-proxy. Just not that the definition has to be done
+<I>after</I> you connect to the proxy. You can also redefine f_powerup,
+and f_took.
+
+<P>The f_report and f_powerup binds can be automatically triggered by the
+proxy (when someone says a report or you get a powerup). This is enabled
+with command '<TT>.report power reply'</TT>.
+
+<P>If you want to set a lot of settings when connecting to the proxy, a
+handy way to do it is to make a proxy.cfg, and then define in your main
+config '<TT>alias proxyautoexec exec proxy.cfg</TT>'. The proxyautoexec
+alias is executed whenever you connect to Cheapo.
+<BR>&nbsp;
+</BODY>
+</HTML>

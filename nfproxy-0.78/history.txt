@@ -1,0 +1,512 @@
+History of [NF]Proxy/NITRO
+--------------------------
+
+
+Changes in Version 0.77:
+------------------------
+warning:
+-it can happen if you use .gllego that glqwcl.exe will crash on mapchanges or startup! this is a 
+ problem of the opengl32.dll (i think if it crashes it don't supports the needed texture mode).
+ try to change  gl_playermip/gl_picmip  (in your autoexec.cfg) this will help most of you!
+ 
+removed bugs:
+-removed a bug in the soundtrigger which didn't let you use $\ correctly in soundtrigger messages
+
+changed:
+-i've optimized the internel protocol of [NF]Proxy, it now sends less infos over the server
+
+new features:
+-you can now record demos WITHOUT ANY ADDITIONAL LAGS!
+ normally the qwcl client disables the delta compression of entities when switching to record mode.
+ this forces the server to send all entities with all parameters for every frame even when nothing has changed. 
+ the proxy now blocks this behaviour and turns the delta compression back on.
+ the compression ratio of the delta compression is very high - you can check it by using .compressionratio
+-it's now possible to use white text in (team)messages! haed on to the easyfont section for further details.
+-added messagecommands:  %[a] %[h] %[w] %[b] and %[P] they behave like %a %h %w %b and %P 
+ but the proxy will add glowing braces to all values who reached the limits set with .setneed
+-new messagecommand %n added, it will only show the message to teammates in your vicinity!
+-f_report added also ... look at the alias section for infos.
+-you can switch the %P command to report long Powerupnames using .shortpowerupmode on/off
+-the names of the weapons (short and long names) are now changeable. have a look at the naming commands!
+-the command .fullbright lets you set the dynamic lights to the maximum. i've included this because
+ im using a riva tnt and its really hard to see people in dark corners, even if you try to solve this problem 
+ using idgamma!
+-you can now set a config file dir in the NFProxy.ini (CFGDIR=) or using the command .setcfgdir
+ if a config dir is set the proxy tries to execute all [NF]Proxy depending config files (NFProxy*.cfg)
+ first in this directory. if a config file can't be found in this directory it lets qw execute it!
+ config files executed thrue the proxy (if a config file dir is set) can be up to 32kb. 
+-own config files can be executed (if a config file dir is set) by using .exec
+-team statistics added to fraglist.log
+-added 2 new modes to the deathmessagefilter - you can now filter team kill messages or enemy kill messages!
+-added %N to the f_took, f_respawn and the f_death aliases so you don't see the messages yourself!
+
+
+Version 0.75:
+-------------
+news:
+-moved the old version informations to a new file (History.txt)
+-the new detonator drivers for riva tnt do not support the ega 80*50 text resolution used by my proxy for the status screen!
+ i think its a bug like the fullscreen vga crash in the earlier driver version of the riva tnt driver (try ALT+F9 in the good old norton commander)
+ if you have installed them and probs disable the status screen in the NFProxy.ini with QUIT = Yes!
+
+removed bugs:
+-sorry you tf freaks - i've copied (by accident!) an old location load routine over the new and there 
+ was this fucking limit again! you can use as much locations as you wish!
+-removed a bug that sometimes caused an illegal server message crash (only happens when clock/timers were disabled!)
+-.gospec and .goplay were not working correctly. this was a timing problem and should now be removed!
+
+changed:
+-INTELLISKIN IS CHANGED! now _a will be added if someone has armor not if he needs it! so be sure everyone in your team
+ is using a version greater or equal 0.75 of [NF]Proxy/NITRO!
+-the DropClientPackets feature can no longer be blocked using fpd! i've changed it because this feature is just
+ producing lag but it don't changes the ping! (if you drop every 5. packtet(20%lag) the ping will only advance +2ms!)
+-%s now reports with powerups (in short form)!
+-advanced the security of f_modified.
+
+new features:
+-new feature called .intellicrosshair - it changes the color of the crosshair depending on your state (armor/health).
+ you can define a color for 'all ok', 'no direct hit' and 'no rocketjump' (use .setcrosscolors).
+ you have to use 'crosshair 2' to use this feature! (thanx to flocutus for the idea!)
+-you know this d_mipscale 40  (switching to 'lego mode') command for non gl quake? you can use gl_max_size 2 to do the
+ same in glquake - the only problem is that this changes the skins too in gl.
+ the new .gllego command removes this problem!
+-new easyfont command $\ - it can be used to hide your name in messages! all in the message before the $\ will
+ be deleted! the effect will be there even when clients don't use a proxy!
+-because you can send fakes messages using $\ i've added a .nofake command which let you see who send it!
+-new messagecommands:
+ %N will hide the send message from yourself! (for took/death/respawn triggering for example)
+ %C will insert the client name (your name) usefull if you use $\ to hide your name
+ %J will insert the name of the guy who recently joined the server! using this you can give him a warm welcome ;-)
+-you can now change the locdir online with .setlocdir! usefull if different loc files are needed for same maps! (tf/ctf/dm)
+-messagegroups can now be used with INTELLICOM!!! have a look at the messagecommands %s %S!
+ if you use %S (status) with messagegroups all members of the specified group will answere - not only the ones in your vicinity!
+-with .shortpowerupmode you can force Own Powerups (%P) to be reported in Team Powerup style (%p)
+-i've added teamstatistics to the .listfrags / .centerprintfrags
+-added duel support to .easyrecord!
+
+Version 0.72:
+-------------
+news:
+-i've splitted the proxy into two proxies one called [NF]Proxy and one NITRO! read above for more infos!
+-i will release a third one which will be called NITROLITE it will just feature the message command %l and nothing else!
+-the executeable is no longer packed (win32) because avp (antivirus) detects my packer as a virus ...
+-added support for Ocrana Leds (visit www.ocrana.de - thanx to Slop) to the EasyFont!
+ you can find the required gfx.wad in the proxy archiv - just copy it in your quake/qw directory ...
+-David aka Pionir (http://www.pionir.demon.co.uk) mailed me very nice painskins for the intelliskin feature!
+ you can find them in the archiv too!
+
+removed bugs:
+-removed many bugs so i only mention a few here ...
+-fixed a bug in the location management that caused a problem in some maps like 2fort5r.bsp, the proxy reported
+ the wrong position at the blue upper lift! thanx to [CiH]Vario for the bugreport!
+-sometimes when using the gamespystarter it happens that the connect to the server went wrong because the qwcl
+ needs to much time to execute the config files like NFProxy.cfg on startup. i've delayed the server connection
+ on startup - now this should be no more a problem!
+-changed the soundtrigger so that if the soundtrigger is enabled but blocked by fpd on the server it will filter
+ the soundtrigger commands out of the messages.
+-removed a bug that caused that you were not able to set a password or to change your speccing mode when not connected!
+-intelliskin is no off by default ...
+-f_version now reports a crc checksum with the current ip you are connected to added, ive removed the 
+ NoTimers! message from f_version but its still in your userinfo!
+-if you have set a locdir in the linux version the proxy could't find it ...
+
+changed:
+-if you set QWEXE/QWDIR and QWPARAMETERS in the NFProxy.ini the proxy launches qw automatically and connects to it!
+
+new features:
+-f_modified f_modified2 & f_modified3 added, read the "f_queries supported by [NF]Proxy" section for further info...
+ you can enable/disable the f_modified check with .modified (its enabled by default!)
+-added a new check for fpd filters called f_fpd! this one is a real hard one for all filter so go 
+ and check it out at the "f_queries supported by [NF]Proxy" section!
+-you can now use message groups, look at .filter!
+-use .filterown to show/hide own messages send to groups you not belong to!
+-the locfile directory can now be set using the new commandline parameter -l
+-added the well known ocrana leds (colored characters used to see messages more easily!) to the easyfont
+ use $R for red, $Y for yellow, $G for green and $b for blue! (copy the supplied gfx.wad into your quake/qw dir)
+-a new halp page called .helpparameters shows u a description of all parameters need for the commands
+
+Version 0.70:
+-------------
+removed bugs:
+-removed a bug in the command parsing. if you tried to use [NF]Proxy commands in an alias the Proxy didn't took
+ the last command!
+-spectators don't autoreport anymore ... (a bug that in 0.66 appeared!)
+-the armorvalue will is now resetted on mapchange ...!
+-the gamemod config files (for example NFProxy_fortress.cfg) will now be called later!
+ The problem was that [NF]Proxy commands used in this config files sometimes excecuted and sometimes not. 
+ in this early phase of the server connecting procedure it can happen that the client does not send all 
+ commands to the proxy ...
+-changed the players death handling so the messagecommands %E %O %d and %L should now be more reliable!
+-printptlong and listpowerupslong are now supporting the easyfont feature!
+-if you are recording a game the qwcl clients aktivates the cl_nodelta feature so the server don't sends delta packed
+ entities anymore, instead it sends for every game frame all data for every entity, this causes a lot of network traffic!
+ the last versions of [NF]Proxy wasn't optimized for this mode so some people got lag effects when recording.
+-the tooktrigger is now working correctly in cl_nodelta 1 mode (this mode is not recommended it causes much network traffic)
+-you can now use spaces and tabs between proxy commands and their parameters!
+-removed a bug in the autoreport (it reported even when the last teammate of you left the game ...)
+-clanarena color handling fixed!
+-fixed a bug in the server downloading code
+
+changed features:
+-the poweruptimers have been COMPLETELY REMOVED, read my comment on this above!
+ because of the removement of the poweuptimers %g and %G will only reply with Powerup or the text set with .setnonename !!!
+-rewritten all time critical parts of the code for speed enhancement and kicked many of my debug routines!
+ so this is the fastest version of [NF]Proxy (this took me one week!)
+-the fraglist will now automatically logged to a file called fraglist.log in the proxy directory!
+-there are no longer limits for marks in loc files! only the location names are limited to 30 characters!
+-autoreport now also calls f_team when the team member who took a powerup is not using [NF]Proxy!
+-in teamfortress the deathtrigger will just be called if you have the enemyflag when dying!
+-advanced the intelli reporting for team fortress!
+-in teamplay 0 mode the proxy now tells you the name of the enemy who took a powerup!
+-the help is now splitted into help pages!
+-the easyfont now only check for color changes (#) in names  - not in messages,
+ and the $ is only replaced if the following character is a valid easyfont command!
+ -> so # and $ are now again available for soundtrigger!
+
+new features:
+-intelligent skin gives you the possibility to see what your teammates currently need just by looking at them.
+ look at .intelliskin! this is a very powerfull feature so i have advanced the fpd settings!
+-with .gospectate (.gs) and .goplay (.gp) you have the possibility to switch easy from specmode to playmode or vice versa
+-added a filter for fov (.fovfilter) and for r_drawviewmodel (.weaponmodelfilter) which filters commands 
+ coming from the server! the r_drawviewmodel is usefull if you want to play rocketarena in gl without your weapon on the screen
+ the fovfilter is usefull for teamfortress and other mods changing your fov ...
+-you can now configure [NF]Proxy by editing the NFProxy.ini file! look at the NFProxy.ini file description
+ in this document!
+-you can now set a locfile directory (only in the NFProxy.ini) all locs are loaded/saved from this dir if 
+ one is set!
+-5 Tracking Modes are now available! look at .track .trackfree .trackplus .trackminus
+-the Proxy now calls NFProxy_spectator.cfg and NFProxy_player.cfg if you change into spectator mode or back!
+ i have included my configurations so copy them into your id1 directory and edit them!
+-i've added an ambient sound filter - only soundeffects will be played when enabled! 
+ look at .staticsound!
+-added 2 list commands, .proxyinfo : list all players with proxies and their versions,
+                        .colors    : list all players with colors and user_id (for qw user command)
+-new help command for the EasyFont feature : .helpfont
+-new messagecommands:
+ %P reports the powerup the Player has in short form : Q=Quad P=Pent R=Ring and F=Flag !!!
+ %V will just report enemy names when pointed!
+ %D name of enemy who killed you last
+ %K name of enemy you killed last
+-added an alias that will be called after mapend f_mapend. have a look at the alias section.
+ you can use it for name animation scripts for example!
+
+Version 0.66:
+-------------
+news:
+-this documentation is now available in HTML format, look at NFProxy_Docu.htm !!!
+
+changed features:
+-good news for those of you who wrote me because of the lost seconds of the clock,
+ i've found them and included them again but they are only available if you don't use the -t switch !!!
+-removed the' Timers on' info after the Proxy Ident when not using the -t switch because if people read 
+ 'Timers on' in your userinfo when timers are blocked on the server by fpd they could think you are 
+ cheating so when timers are enabled there will no timer statement printed after the Proxy Ident!
+-changed the easyfont commands so you can use '#' and '$' again for soundtriggering!
+
+new features:
+-with .alwaysautoreport you can force the proxy to call the autoreport aliases even when every
+ teammember is using [NF]Proxy!
+
+Version 0.65:
+-------------
+news:
+-NoX of the clan 'Das Kartell' is working on a GERMAN Documentation for [NF]Proxy !!!
+-i have added a troubleshooting doc called Troubles.txt - please check it out!
+
+removed bugs:
+-the disconnect from proxy when trying to connect a running kombat team game with the wrong team set 
+ is removed 
+-i've rewritten the user info handling - this should remove the last skin probs
+-removed a bug from the death log! gibstats now has no problems analysing it!
+
+changed features:
+-the fastrespawn feature is now automatically disabled in clanarena/arena and teamfortress mods!
+-i have removed the saveloc command, nobody understands it's meaning - everyone thinks it's to save the normal loc files
+ maybe nobody reads this documentation, who knows ...
+-the proxy will now try to execute a NFProxy_qw.cfg when the gamedir is set to qw and it will try to execute 
+ a NFProxy_mapname.cfg on mapchange! 
+ This was requested by a few people, so i added it!
+-WARNING: the intelligent reporting feature has changed!! its not compatible to other versions of [NF]Proxy!!
+          be sure all of your team are working with the newest version!
+-the clock has lost its seconds, don't know where they are gone!
+-advanced the fpd settings ...
+
+new features:
+-POINTING added - have a look at %x %y %t and .reportlevel!!!
+-I've added a feature that i call Location Pointing have a look at the messagecommand %f
+-%v will report the name of the player you are looking at even if the player is an enemy!
+-there is a new commandline parameter called -t 
+ if set the proxy blocks all powerup counters and to the userinfo of NFProxy 'No Timers' is added!
+ if not set the proxy add the status of your powerup counters to the userinfo of NFProxy!
+-the well known nice feature funnames of cheapo is now available for [NF]Proxy
+ (he copied my Easy Gamespy Starter and my advanced Sountrigger Options so this is fair!)
+ have a look at the Easyfont section!
+-colorforcing is now available, have a look at .teamcolor and .enemycolor!
+-added a .colorsetskin feature. when enabled the team/enemyskins are set using your bottomcolor and not your team.
+ this is very usefull when playing teamfortress (so the spy problem is gone, thanx to Kerstin of HF for the tip)
+ and maybe when playing clanarena!
+-now support for Team Fortress! - keys/flag will be reported, the fastrespawn features automatically disabled and
+ the colorsetskin mode is forced for skin forcing features! 
+ for key reporting have a look at .reportlevel !!!
+ i don't know if the fraglog is working absolute correctly under team fortress, if you observe an error please
+ report it to me because i don't play team fortress ... 
+-class pointing added for TeamFortress if you point at a teammember or enemy his class will also be reported!
+-i have added a command that let you filter the serverinfo w_switch and b_switch. if you get the message
+ infostring length exceeds sometimes or if you get kicked by TeamFortress for skin change (without changing the skin)
+ try this one! if you are using my bestweapon feature you don't need them and i don't think that TeamFortress uses them!
+ so have a look at .filterswitches!
+-you can change the names of the Flag and the Keys using .sfn .sskn and .sgkn!
+-Runes can now be reported have a look at the .reportlevel (for the Orange mod for example!)
+-added a help page for all the message commands, try .helpmessages (or .hm)
+-the status screen is now available for the linux version 
+ WARNING : if you start [NF]Proxy using the standart windows telnet and get a segmentation fault error or 
+           if you don't like the status screen disable it using commandlineparameter -q
+-new commandline parameter -eTIME lets the Proxy terminate itself after TIME minutes of inaktivity!
+
+Version 0.55:
+-------------
+news:
+-[NF]Proxy is now available for Linux (i386)!
+
+removed bugs:
+-the listfrag is now working correctly again!
+-the reconnect feature now reconnects correctly even when you are already conencted (i was too lazy to fix it before!)
+-the 100 Health name is now used by the tooktrigger too!
+-fixed a problem with GameSpy V2.04/2.05 - i'm not a registred Gamespy User so i could'n remove this before!!!
+ thanx to Phadda for reporting it!
+-removed a bug in the .deadbodyfilter ...
+-removed a bug in the skin handling, thanx to the guys from Das Kartell for reporting and testing it!
+
+new features:
+-you can now log the death messages to a file using .logdeath and the chat messages using .logchat
+ this is for those people who want to use gibstats together with the messages filters [NF]Proxy have or the
+ owndeathmessages of [NF]Proxy! - or if you just want shorter log files instead of this large condebug files!
+
+changed features:
+-yeah - the good old bloodstyle explosion is now available again! use .setexplosion 8 to enable it!
+-.easyrecord will now add the current date & time to the file name in the case that no quakedir is given or the 
+ qwcl client is not running on the same computer!
+ and it now first executes a stop demo command!
+-WARNING : i have changed the fpd value for disable of the intelligentreporting from 256 to 1024 because the qizmo guys 
+ added fpd values for skin force disable and color force disable and used my intelligentreporting fpd value!
+ i can't understand why they do something like that because its very easy to use the qw commands
+ noskins 2/baseskin to get the same result for enemys-/team- skins!
+
+Version 0.54:
+-------------
+removed bugs:
+-the messagecommands %e %E %o %O now check correctly if team mates or enemies in your vicinity are dead
+ or not!
+
+new features:
+-for all of you who are using blood for explosions, you can now change the number of bloodparticles which
+ will be spawned! have a look at .setbloodlevel!
+-messagecomamnd %i now reports the last taken object including armors, weapons, packs, ammo and health!
+ %I reports the last taken item that has triggered the f_took alias!
+-advanced the tooktrigger so have a look at it!
+-the new command .ownmessageping lets you remove the message ping of own messages!
+-you can complete remove own messages using .ownmessage, this way only the other will see them!
+ this feature is just for people who know what they are doing!
+-you can change the name of 100Health using .set100hname and the name of Backpacks using .setbackpackname!
+
+Version 0.53:
+-------------
+removed bugs:
+-ok, i did it! i removed a bug in the listfrags routine (v0.52) and failed! the new listfrag routine crashs
+ the whole proxy when called! when .autolistfrags is enabled this routine is called after every map!
+ removed this bug!
+-i've changed the integrated gamespy starter,now it checks frequently the status of the (gl)qwcl client.
+ this way the proxy terminates itself (if it's started with -x) when qwcl is quit!
+ in older versions the proxy terminated when the qwcl client disconnected!
+
+new features:
+-because it's hard to use one config file for all the mod's out there i give you the possibility to write
+ a config file for everyone, where you just have to set the differences from your normal config!
+ have a look at the 'How to create configuration Files for [NF]Proxy' section!
+
+Version 0.52:
+-------------
+removed bugs:
+-there was this nasty bug, which let the server tell anyone that you are playing with none standard eyes/player modells,
+ that happend when connecting to a server as spectator and than try to reconnect or connect the same or another server!
+-removed a bug in the network send routine which caused a proxy crash with the error WSAEWouldBlock!
+ thanx to exo-ice for reporting this bug!
+-some people seems to have more fingers than other :-), so i increased the numbers of bestweapon slots from 3 to 5!
+-removed a bug in .lal thanx to Neophyte for reporting this bug!
+-in version 0.51 i have increased the max number of marks per loc file, but i forgot to use a bigger counter for it!
+ the old one overflows after 256 marks!
+-removed a bug in the fraglog. i used a integer for the effi compare so the value after the dot wasn't handled correctly!
+
+new features:
+-now you can let the proxy drop client packets (.dropclientpackets) this will give you smoother gameplay and less network
+ traffic. you can control it by using the new feature .showpackets, which shows you the client packets received per second,
+ the server packets received per seconds and the number of dropped packets by he proxy, so you can tune your qwcl as you wish!
+-support for f_lagreport when typed in the console the proxy tells all how many fake lag you are using!
+-i added a alternative network routine which can be enabled by using the new startupparameter -n.
+ if you have lag problems - test it and tell me about your experiences on it!!!
+-i worked a little bit on the spectator mode. if speccing a game and intellireporting is enabled the proxy tells you
+ who in which team has an powerup!
+
+Version 0.51:
+-------------
+problems:
+some of the new functions like .odm or .dmf can cause lag! i don't know if this problem exists even in
+this release so please test it and tell me about your experiences!!!
+and please send me bug reports, this will help me to make this Proxy a hell of a tool!!!
+
+removed bugs:
+-ok i hear you all screaming about the bestweapon funktion. i recommend you to use it, because it's
+ very powerfull!!!
+ i have added a possibility to turn it completely off (default!), just use .bestweapon off
+ and i have removed a bug in it!
+-do you remember the user defineable timers for servers with disabled powerup timers???
+ now you can only use them when powerup timers are enabled (don't know if they are usefull anymore :-)) ...!
+ use the new clock instead!
+-not a bug: the 'N' symbol for no armor in %A reporting is gone!
+-splitted help into two help commands: .help and .helpadvanced, because the help command got to
+ big for some data packages so the client disconencted!
+-removed some debug code, this should speed up things a little bit!
+-a friend send me a loc file with 390 marks in it, so i changed it again to 400 marks per loc, 
+ if this is not enought - go to hell :-))
+ 
+new features:
+-you can now change the name of the Armors, look at .setraname .setyaname and .setganame
+-a name can now be disabled by using the off parameter! (.sqn .srn .spn .snn .sran .syan .sgan)
+-a clock is now available, look at .clock
+
+Version 0.5:
+------------
+removed bugs:
+-there was a bug, that appeared by some people : when the countdown of the kombat teams mod reached the end
+ there came lots of u_remove on full update before the game starts ... that should be fixed now!
+-the %o %O failure is gone, it added you to teammembers in your vicinity even when you were dead!
+-not really a bug - the beeping of commands is no removed!
+-the skin bug (hopefully) should now be history.
+-not a bug but no new feature, you now can use up to 200 marks per loc file for a map
+ unbelieveable that a uk clan mailed me because 128 marks are not enought for their loc
+ files, don't know what maps they are playing :-)
+-rewritten the network code
+
+new features:
+-fastrespawn feature will respawn you as fast as possible (or timed) using a jump (look at .fastrespawn)
+-blend filter for item pickup blending (.blendfilter)
+-added a need messagecommand that checks automatically what you need (armor/health/weapons/ammo) and reports it (%z)
+ you can control it by using (.setneed)!
+-i added a damage filter so the red flash when getting hit can now be filtered (.damagefilter)
+-user defineable timers for servers with disabled powerup timers, you can set up to 10 timers (.inittimer .cleartimer)
+-took trigger for taken armors (.tooktrigger and %i)
+-deathtrigger and respawntrigger. if you die/respawn the proxy automatically calls aliases
+ called f_death and f_respawn, ok thats too much for 4on4 but its ideal for 2on2 or maybe 3on3!
+-you can now change the name of the Powerups, look at .setquadname .setpentname .setringname and .setnonename
+-added message commands which let you easily use up to 4 lines of text in one chat message! (%u and %U)
+-powerup takes of teammates and enemies are  now reported using the aliases f_team and f_enemy, so you can now
+ create your own autoreporting messages by writing own f_team and f_enemy aliases!
+-added easyrecord function, you never have to type in names for demos again! have a look at .easyrecord
+-soundtrigger is now available have a look at .soundtrigger, it's different from all soundtrigger features of other
+ proxies! - so be sure to check it out!
+-i've changed/added some message commands, have a look at them because the meaning of %b and %d have been changed!
+ the reason is easy, its for compatibility with other proxies ... i dont want you to change your communication scripts,
+ just because you change proxies ...
+ %b now reports your best weapon depending on the weapon priority set with (.setweaponpriority)
+ %r reports the number of rockets you have(just what %b did before!)
+ %c reports the number of cells you have
+ %L reports your last dying position with a time limit of 5 sec.
+    after time is up it reports your current position like %l  (thats what %d did before!)
+ %d now reports your last dying position without any time limit!
+ %w reports your current weapon!
+ %W reports the ammo of your current weapon!
+ %G reports upcommin Powerups with their location
+ %S is a new intelligent communication feature, it works like %s but it will show you the armor/health/bestweapon from all
+    teammembers in your vicinity! (it's very usefull in dmm1 and if amors/powerups appear to look who should get it!)
+-best weapon feature (.bestweapon) : you can define up to 3 impulses for best weapon selections
+-added a death message filter, you can filter all death message or the ones from
+ the other players (.dmf)
+-own death messages added, if enabled, short deathmessages from teammembers will be
+ displayed (.odm)! use it together with the deathmessage filter function!
+-hostname resolution is now available! so you can use hostnames instead of ip addresses
+ to connect a server!
+-added stopconnecting feature (.sc)
+
+Version 0.4:
+------------
+removed bugs:
+-removed a hard bug in the control of the user data
+-fixed a bug in %p reporting!
+-corrected a bug in the movement parse routine for qw2.30
+-corrected bugs in the fraglog parsing
+-spectator handling bugfixed - this should fix the skin bug too!
+-fixed the bug that caused disconnection from server when you have executed a config file 
+ with nfproxy commands in it!!!
+-fixed the disconnect, reconnect and connect bugs! you now can connect another server 
+ without disconnecting first (thanx to urban for the connect bug report)!
+-removed a bug in delta entity parsing (thanx to KeyBuZZ)
+-removed a bug in the deadbodyfilter (it caused a total crash of (GL)QWCL!)
+
+new features:
+-report of nearby enemies and members integrated (%e, %o, %E, %O)
+-list commands for powerups/armors in map (.lp, .lpl, .la, .lal) included.
+-completely new written powerup timers and reporting! There are so many changes in the
+ powerup handling, head on to the powerup section in this document!
+-reporting of the next nearby powerup/armor/backpack added, in deathmatchmode 1 it will 
+ report weapons too! (%X, %Y and %T)
+-the fraglog can now be watched centerprinted - really nice for speccing! (.cpf)
+-on map change the fraglog will be automatically printed to console (see .alf)
+-intelligent reporting incuded (see .ir and the powerup section in this document)
+-added .who commando (it lists all players with their teams skins and rank)
+-fraglog sorts now the players depending on their efficiency
+-%d (last dying position) remembers now the last dying position for 5 sec.
+ if time is up it reports your current location ...
+-autoreport is much intelligenter now! it only reports when there is a teammember who is not
+ using [NF]Proxy, or if intelligent reporting is disabled (by server or by you)!
+-added a .cdtracks feature, for those of you who have problems with cd track changes 
+ on map changes! - just for you dust :-)
+-added the .echo command - if disabled no standard message will be printed when setting 
+ a parameter, just command parsing errors and all list commands will be printed to console
+-now you set the style of the exposions by using .setexplosion, there are up to 8 different 
+ explosion styles to choose from.
+-added a floodprotection feature, which protects you from getting the 10 sec. flooding penalty
+ time from the qw server when sending more than 4 messages in 4 seconds (.floodprotect)!
+-Location marking Functions added (.mark .showmark .delmark .undodelmark .renamemark 
+ .loadloc .saveloc)
+-now you can see who is talking to you by using the .chatflash command
+-added a possibilty to choose what %T %X %Y will report (.reportlevel)
+-with .nopolyblend you can choose if you will get blended by the powerup(s) you have
+-integrated the Easy GameSpy Startup feature (-bQUAKEDIR -gQWCLEXE -x)!
+-[NF]Proxy detects the KombatTeams mod and resets the fraglog after the countdown has
+ ended and it ignores the powerups the players have before starting the countdown!
+
+Version 0.31
+------------
+removed bugs:
+-don't know how it could happen, i've released a not running version of [NF]Proxy (V0.3).
+ the night before i was on the dcc session in essen/germany and i havent slept that night :-)
+ so this is a correct running version of [NF]Proxy.
+ this version is compatible to QW2.21 QW2.29 and QW2.30.
+
+Version 0.3
+-----------
+new features
+-support of proxyautoexec aliases (required for bod-tct's proxy starter for gamespy)
+-support for combat teams/ocr teammod statistics, they are using standard qw death 
+ messages but send them as one string - not like qw which sends death messages in pieces,
+ so i have to parse the whole death string now!
+-dead body filter - filters all parts of dead bodies! (increase fps)
+-muzzle flash can be turned off.
+-support for QW Version 2.30
+-quiet mode - needed by some GLQWCL users. when connecting [NF]Proxyt prints text on
+ the screen, some 3dfx drivers switches the display to normal mode, so you just will get
+ a blank screen or something like it. this feature will help to avoid this problem!
+
+Version 0.2 (first public beta!)
+--------------------------------
+features:
+-intelligent poweruptimers: the timer of all players using [NF]Proxy
+ communicate to synchronize themself. So you won't miss an powerup take.
+-loc file compatiblity to qizmo and cheapo
+-absolute lagfree!
+-inteligent autocommunication using %s reporting
+-autoreport of taken powerups to teammembers
+-chooseable team and enemy skins
+-online statistics
+-support for fpd server variable
+-support for f_version

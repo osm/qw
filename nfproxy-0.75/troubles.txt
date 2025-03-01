@@ -1,0 +1,53 @@
+Troubleshooting:
+----------------
+
+Easy GameSpy Starter:
+
+-be sure to use the ':' after your command line even when you don't pass parameters to (gl)qwcl
+ for example : NFProxy.exe -gqwcl.exe -bf:\quake -x -q : 
+
+-check that the gamespy.cfg and frontend.cfg in the quake/id1 dir are not writeprotected!
+
+-don't use a batch file (expecially when using the -x commandline parameter!),
+ you can write all parameters after the ':' or put them in the autoexec.cfg in your quake/id1 dir
+
+-be sure to add .exe after the qw client name so the exefile will be started and not a batch file with the same name!
+ for example : qwcl.exe or glqwcl.exe
+
+GL Users:
+
+-if you get a black screen on connecting [NF]Proxy from glqwcl.exe be sure to use the -q
+ commandline parameter!
+
+Linux Users:
+
+-if you start [NF]Proxy using a telnet client and get a segmentation fault use the 
+ commandline parameter -q (i get this prob when i'm using the standart telnet from windows...)
+ i don't know why this happens, i'm using the standart curses lib! if anyone knows tell me please ...
+
+Powerup Timers/Clock:
+
+-if you can't see the poweruptimers or the clock try to position them using .sptl 14 0 32
+ this will set them to a 320*200 resolution position!
+
+-if you can't see them using .sptl 14 0 32 check the scr_centertime setting, if it's set to 0 you
+ can't see any centerprinted messages so set it to a value greater than 0, i prefer 3!
+
+TeamFortress:
+
+-if you get kicked for changing your skin when changing the class it's because the user infostring gets too long.
+ this happens when all userinfo variables of the client together exceeds 64 bytes!
+ this could happen for example if you set the TeamFortress serverinfo variables EXEC_CLASS and CLASSHELP !!!
+ to avoid this you can let [NF]Proxy filter the w_switch and the b_switch variable, use the command .filterswitches on
+ i don't think they will be used in TeamFortress!
+
+Misc:
+
+-if you get the message "Outgoing message overflow" your config files are too big!
+ you can avoid this by placing the command wait in the config files!
+ if qw finds an wait command it sends the message packet and creates a new one with the following commands
+ so no overflow will hapen ...
+
+-if you are jumping around disable the .fastrespawn feature, some mods put you in status dead even when
+ you are not dead like teamfortress when reloading a weapon, or rocket arena!
+

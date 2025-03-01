@@ -1,0 +1,274 @@
+============================
+= QuakeWorld Server (QWSV) =
+============================
+Released: Friday, December 13th, 1996
+
+============
+= Contents =
+============
+
+1......Installation Instructions
+2......Command Line Parameters
+3......Console Commands
+       3.1......General
+       3.2......Security
+4......The QuakeWorld Master
+       4.1......Overview
+       4.2......Features
+       4.3......To Do
+5......The QuakeWorld Team
+
+================================
+= 1. Installation Instructions =
+================================
+
+1) Make a "QW" directory below your Quake root.
+
+	cd \quake
+	md qw
+
+2) Make a skins directory below QW
+	
+	cd qw
+	md skins
+
+3) Copy the progs.dat included in the QWSV archive to the QW directory
+
+4) Make sure qwsv.exe is in the Quake directory
+
+5) Run qwsv.exe with optional command line parms described below
+
+==============================
+= 2. Command Line Parameters =
+==============================
+
+-master     Connects to an alternate master.
+
+	    By default, qwsv.exe will attempt a connection to id's master
+	    server at 192.246.40.115. Should there be another master
+	    server you wish your server to connect to, use this command.
+
+	    "qwsv -master 204.50.178.66"
+
+-port       Specify an alternate port to listen for connections.
+	    By default, qwsv listens on port 27000. Use this command 
+	    to specify an alternate port.
+
+	    "qwsv -port 20593"
+
+-game       Specify a directory to an alternate progs.dat or map files.
+
+	    Same as Quake. For example, if you wish to run CTF for
+	    QuakeWorld, and have it installed in c:\quake\ctf and assuming
+	    that you have qwsv.exe located in c:\quake, simply execute;
+
+	    "qwsv -game ctf"
+
+	    To choose the CTF progs.dat and support files.
+
+
+
+=======================
+= 3. Console Commands =
+=======================
+
+-----------
+3.1 General
+-----------
+
+Please Note: Most of these can be either prefixed with a + at the command 
+line, or may be included in a file called "server.cfg" (which is the
+equivalent of autoexec.cfg) which is loaded along with qwsv.exe.
+
+map         Change to a new map
+
+	    "map dm2" would change to dm2
+
+rcon_password   Set a password for remote administration
+
+	    "rcon_password llama" sets the rcon (Remote Console) password
+	    to "llama" for your server. This would enable you to 
+	    remotely administer your server from qwcl.exe.
+
+status      Displays the present status of your server. CPU Utilization,
+	    all connected clients with detailed statistics, as well as
+	    the average response time to clients.
+
+serverinfo  Displays all the cvars for your current server configuration
+
+showpackets This is VERY verbose. Prints every packet received to the 
+	    console. Generally, not a good idea to use unless you are 
+	    debugging something
+
+	    "showpackets 0" turns it off (Default)
+	    "showpackets 1" enables
+
+showdrop    Shows you which client has dropped how many packets. Useful to
+	    guage the quality of their play. The more packets they drop,
+	    the worse their QuakeWorld experience.
+
+	    "showpackets 0" Turns off dropped packet display to the console
+	    "showpackets 1" Enables display of dropped packet information
+
+maxclients  What is the maximum number of clients you wish to allow to
+	    connect to your server? (Default is 8)
+
+	    "maxclients 16" allows 16 clients to connect to your server.
+
+samelevel   Toggles if QuakeWorld changes levels when someone exits
+	    (Default is 0)
+
+	    "samelevel 0" allows advancing to the next level
+	    "samelevel 1" the same level will be played over and over again
+			  if someone exits
+	    "samelevel 2" Same as noexit 1. Kills someone if they exit the
+			  level
+	    "samelevel 3" Same as noexit 2. Kills someone if they exit the
+			  level except for the case of where the map is
+			  start.bsp
+
+fraglimit   Advances to the next level after n frags
+
+	    "fraglimit 25" Advances to the next level when someone achieves
+			   25 frags
+
+timelimit   Advances to the next level after n minutes of play
+
+	    "timelimit 15" Advances to the next level after 15 minutes of
+			   gameplay have elapsed on the current level
+
+hostname    What you wish to call your server. "unnamed" is the default
+
+	    "hostname RevCoWorld" gives your server the name of "RevCoWorld"
+
+teamplay    Sets teamplay settings for your server
+
+	    "teamplay 0" No teams (default) Hurt everybody
+	    "teamplay 1" You cannot hurt your teammates
+	    "teamplay 2" You lose one frag for killing a teammate
+
+quit        Quits the server and returns you to the prompt disconnecting 
+	    all connected
+
+------------
+3.2 Security
+------------
+
+addip       Add a mask to the ban list
+
+	    "addip 204.212.39" bans any incoming connection from 
+			       204.212.39.*
+
+removeip    Remove a mask from the ban list
+	    (See listip)
+
+	    "removeip 204.212.39" removes the ban on 204.212.39.*
+	
+listip      Displays the present ban filter list
+
+writeip     Writes out the ban list from memory do disk (permanent bans)
+
+adduser     Add a userid to the ban list
+
+	    "adduser 5" would ban American McGee from playing on your 
+			server ;)
+
+removeuser  Remove a userid from the banlist
+
+	    "removeuser 5" would allow American McGee to play on your 
+			   server again
+
+listuser    Displays the present user id ban list
+
+writeuser   Writes out the user id banlist from memory to disk.
+
+====================================
+= 4. QuakeWorld Master Server 1.03 =
+====================================
+Last Updated: Thursday, December 12th, 1996
+
+================
+= 4.1 Overview =
+================
+
+ The QuakeWorld Master Server, for all intents and purposes, is the central
+database controller for QuakeWorld servers (qwsv.exe). The QuakeWorld
+network architecture does not allow for straight client->server initial 
+connections. All initial connections must first be made to a master server.
+
+ From there, the client may log in, request a list of servers, change their 
+user records, or join a game in progress on an available server.
+
+ The master is in charge of keeping track of all stats, user records, and 
+logs significant events from servers connected to it (frags, what the user
+was last seen doing, etc.)
+
+================
+= 4.2 Features =
+================
+
+* Frag/Death Logging: QuakeWorld automatically keeps track of every users
+frag and death as well as their ranking and skill level
+
+* Network Wide Bans: If there are rogue servers or users who consistently
+cause problems for users in the QuakeWorld network, we now have the ability
+to prevent them from connecting to the network from a central location. 
+Please Note: There should be multiple complaints before a user or IP mask is
+banned from QuakeWorld.
+
+* Seen: Much like bots on IRC networks, QuakeWorld now has the ability to 
+request information on what a particular user name or user ID was last seen 
+doing. ("seen <name/userid>" from the console)
+
+* Clan Access Control Lists: QuakeWorld has the ability to password protect
+key/value combos with a password. For example, if you are in clan "RevCo" 
+and wish to prevent others from using your skin (eg: revco.pcx or bearian.pcx),
+the QuakeWorld admins can password protect "setinfo skin bearian" with a
+password. You may only set your "skin" key to "bearian" if you provide the
+correct password.
+
+* Unique Names: To prevent people from masquerading as another user, QuakeWorld
+only accepts one unique name per master. That way, there can only ever be one 
+"tokay" or "sCaryname" or "Disruptor" per master. Should there be a problem with
+someone stealing another person's well known name, please e-mail the QuakeWorld 
+administrators to have the user records fixed.
+
+
+=============
+= 4.3 To Do =
+=============
+
+* Investigate a method to possibly sync up masters
+* Find a method to have clan rankings, and work more on clan support in 
+general
+
+==========================
+= 5. The QuakeWorld Team =
+==========================
+
+John Carmack            
+New network code and game modifications
+
+Michael Abrash                                  
+Video and Sound drivers (WinQuake Port)
+
+Christian Antkow (aka: Disruptor)               qwmaster@idsoftware.com
+Master Server Development, QWSV Documentation, id Master Server 
+Administrator
+
+Geoff Scully (aka: Tarok)                       gws@dis.on.ca
+Master Server Development, id Master Server Administator
+
+Joe Powell (aka: QSpy)                          jep@sclsis.navy.mil     
+QSpy (QWFE) Programmer, Master Server Development
+
+Dave Riller (aka: DRiller/Kevorkian)            qwdist@idsoftware.com
+QuakeWorld Distribution Co-Ordinator
+
+Rick Brewer (aka: ^Drag0n^)                     tron@cyberportal.net
+QuakeWorld Clan Skins Administrator
+
+Dave Kirsch (aka: Zoid)                         zoid@threewave.com
+QuakeWorld QC 1.01 to 1.06 Upgrade, QuakeWorld CTF Mods, 
+Moral Support
+

@@ -1,0 +1,142 @@
+	  	 ---------------------------------------------
+		 QuakeWorld v1.64 Release Notes (June 13,1997)
+		 ---------------------------------------------
+		        Copyright id Software 1996, 1997
+			       
+				  Programmers:
+			      Dave 'Zoid' Kirsch 
+		           http://www.threewave.com
+			      zoid@threewave.com
+			    
+			     Jack 'Morbid' Mathews
+ 			    http://www.quakespy.com 
+			       jack@quakespy.com
+
+        
+Changes to QuakeWorld Client
+----------------------------
+New:
+- Added download percentage bar.  Displays filename and a bar indicating        
+  visual completeness of download and a percentage.  Overwrites
+  any text at the bottom.
+- Added auto-tracking camera for spectator mode.  It's mostly a novelty, but
+  its fun.
+- Added +showteamscores.  In team games, the intermission displays team
+  totals, unless you hit TAB to display frag scores
+  bind a key to +showteamscores will give you the team score display.
+- Added client side DEMO support and playback
+  usage:  record <file> <server>
+  Autodownload is disabled when recording.
+  playback: playdemo <file>
+  File uses the .qwd extension and is incompatible with regular Quake and its 
+  demos.
+- Adjust console input a bit to allow room for download percent bar (moved up
+  six pixels).
+- Add cl_hightrack cvar for spectator mode, causes it to always
+  select camera view on player with the highest frags.  cl_hightrack 1 turns
+  it on, cl_hightrack 0 turns it off (default)
+- Added text to the "Single player" and "Multiplayer" menu options.
+- Allowed Ctrl-V (paste) at console.
+- Added GL support.
+- Added FOV setting in GL version.
+
+Fixed/Changed:
+- If a model file isn't found (couldn't be download) a msg is displayed
+  telling the user they may need to download or purchase an addon pak.
+- Made all skin downloads go into QW directory.
+- Fixed water jump bug where you hop immediately back out in narrow entrances.
+- Added copyright dialog on exit (press y to quit) with credits and version
+  number.
+- New cvar, cl_warncmd, defaults to zero and disables the 'unknown command'
+  msg.  qwcl stuffs 'cl_warncmd 1' to itself after quake.rc loads. This gets
+  rid of unknown command messages (like unknown command 'startdemos') from 
+  the default exec files, as well as hiding "execing" messages.
+- New command, windows, which will pop a user in fullscreen mode back to     
+  Windows (not GL or Linux versions).
+- Turned off bobbing in spectator mode.
+- Now execs the config.cfg in a gamedir upon receiving a new gamedir from
+  the server (saves the current config into the current gamedir before
+  switching to the new one).
+- Reconnect command will now reconnect to the server it is currently   
+  connected to, or last one it was connected to.
+- Fixed it so entering 'record <file> <server>' while connected disconnects 
+  before starting recording.
+- Fixed scoreboard while dead in GL version.
+- Made it so players are never completely black in the GL version.
+- Changed some console load up msgs in GL.
+- Fixed it so exec files without a trailing new line still work.
+- changed effects in gl to not be as striking (hard to see).
+- Fixed it so a 'glquake' directory is created in other gamedirs for model
+  meshes in GL version.
+- Fixed tolerance on corrupt skin files.
+
+Changes to QuakeWorld Server
+----------------------------
+New:
+- Added new allow_download vars:
+	allow_download_skins, allow_download_models,
+	allow_download_sounds, allow_download_maps
+- Added a few client to server commands for auto-camera support.
+- Adding new server cvar, sv_spectalk (defaults to 1, or on) that controls
+  whether spectators can talk to players.  If disabled, spectators can
+  only talk to each other.
+- New command, sv_gamedir, which sets the visible gamedir to clients.  this
+  allows servers to have a different physical game directories, handing for
+  machines with multiple servers that don't support symbolic links.  for
+  example:
+  		gamedir ctf4.1
+		sv_gamedir ctf
+  causes qwsv to use the physical directory of 'ctf4.1', but report the
+  directory to clients (players) as 'ctf' for their files.
+
+Fixed/Changed:
+- Fixed bug in serverinfo strings (memory overwrite and length problem).
+- Map files are permitted to be downloaded if they aren't in a pak file
+  (unless allow_download or allow_download_maps isn't set).
+- Fixed annoying NET_GetPacket: Connection Refused msgs.
+- Fixed annoying water jump bug where you would immedately hop back out of 
+  water just after you jumped in.
+- Fixed air velocity movement so that it is like regular Quake, 
+  players have more control over their air movement and can cut
+  velocity as needed just like in Quake.  This gives more control
+  to the player and rewards skill.
+- Spectators no longer can send or receive say_team msgs (possible
+  cheating could happen).
+- Stopped reporting spectators as players when front-ends request info.
+- Fixed bug that disallowed 9's in ip address for filtering.
+- Spectators can now send say_team msgs, but only to other spectators.
+- No duplicate names allowed now (will rename people who do it).
+- A client can not name themselves 'console'.
+
+
+Known Issues: 
+-------------
+GLQWCL:
+
+-Alt-Tabbing does not work correctly for many people.  You will get 
+ Windows mode, but your GL video will freeze when you return.  
+ This is a result of a bug in the current GLIDE (v2.3x) drivers.  
+ 3dfx is working on a fix. Check http://www.3dfx.com for an update.
+
+QWCL:
+
+-We are not supporting TeamFortress.  If you run into problems with TF, 
+please email only the TF people, not us and *especially* not the QSpy people.
+
+-Auto-tracking does not work when connected to v1.55 servers.
+
+WorkArounds:
+------------
+
+-If you get the message 'GLIDE.DLL not found' OR QSpy reports error 1157, 
+you need to get and install the latest Glide drivers from 
+http://www.3dfx.com (currently v2.31).
+
+
+-------------------------
+Release Notes written by:
+-------------------------
+Sean 'Redwood' Martin
+Redwood's Quake Page - http://redwood.stomped.com
+
+Special Thanks: All of the beta testers.

@@ -1,0 +1,287 @@
+This file is copy of page http://proffa.cc.tut.fi/~r151925/faqproxy/
+
+
+			         FAQPROXY
+
+
+
+Introduction
+Features
+Commandline
+Commands
+Getting started
+Chaining
+Authors
+
+
+Introduction
+
+FAQ-Proxy is a Quake proxy. It is a program that acts as a bridge
+between a Quake client and a Quake server. For the Quake client it looks
+like a server, and you connect to it like you would connect to a Quake
+server. Once connected you can give commands to the proxy to change
+settings or connect it to a real Quake server. You can run the proxy
+on the same machine as you run the Quake client, or you can run it on
+any other machine that is in the same network as the server and the
+client. You can also run the proxy on a firewall machine to allow
+Quake clients behind the firewall to connect to internet servers.
+
+This document assumes that you know how to use the Quake console.
+If you have never used the console, go study how to work it
+before reading this further. It is also good to know that
+the console can be toggled on and off by pressing the key
+that is directly below esc.
+
+
+Features
+
+Demo recording.
+Observer mode.
+Packet filtering.
+
+Demo recording.
+
+The proxy can record a standard Quake demo file from the data that
+it passes between the client and the server. You can record a demo
+of any game that you play or observe through the proxy. The Quake
+demo format does not support level changes, so when the proxy
+detects a level change it ends the current recording and starts
+a new one for the next level. Demo recording can also be started
+or stopped in the middle of a level.
+
+Demo recording related commands:
+record - without parameters displays current status of recording
+record stop - stops the current recording
+record name - starts recording a demo named name01.dem
+(the next levels will be named name02.dem, name03.dem, ...)
+
+
+Observer mode.
+
+The first client to connect to the proxy becomes a master user.
+The master user can connect the proxy to a server or alter its
+settings. The next ones to connect to the proxy become observers.
+They will see the game excatly as the master user sees it, but
+can not affect the game in any way (except for sending messages
+to the master user). Now, even though you can observe with plain
+Quake client, we strongly recommend observing through a local
+proxy. For two reasons: it will reduce the load the master proxy
+is getting and it will minimize the jerkiness you might be
+experiencing if observing with plain Quake client.
+
+Features:
+- Maximum number of observers can be set to anything between 0 and 30
+- Observing through another (local) proxy reduces load on the master
+  proxy and minimizes jerkiness.
+- Observers can talk to each other and to the master user
+- Master user can send messages to the observers or to the game
+- Master user can kick observers :)
+
+Not yet implemented:
+- Host can become an observer and set one of the observers as the new host
+
+Observer mode related commands:
+observers - displays list of observers
+observers x - sets x as the new maximum number of observers
+kick name - kicks observer name, can use * to match to end of name
+kick #x - kicks observer number x (use observers to get the list)
+mmode local - local message mode, only observers can see
+mmode global - global message mode, messages go to the server as usual
+
+Packet filtering
+
+The proxy can be configured with maximum client-to-server
+and server-to-client bytes per second. What this means is
+that if you have a slow link between you and the server,
+you can use the proxy to filter out unnecessary data in
+order not to overload the slow link. (No more "ping going
+through the roof" in E1M7 :)
+
+Usually the server-to-client data stream is the one that
+overloads the slow link. And the proxy can only remedy
+this if it is run on a machine that is somewhere between
+the slow link and the server. So unless you have access
+to such a machine (for example a shell account on your
+isp's machine) the packet filtering may not be of use
+to you.
+
+However, client-to-server filtering can help if your
+upstream link is slow and you have a fast machine.
+And it is easy to do, since the filtering proxy can
+run on the same machine as the Quake client.
+
+Packet filtering commands:
+c2sbps x - set x as the new maximum client-to-server bytes per second
+s2cbps x - set x as the new maximum server-to-client bytes per second
+
+
+Commandline
+
+This is the output of 'faqproxy -?'
+
+USAGE: faqproxy [-p port] [-n name] [-d demoname] [-o observers] [-c c2sbps] [-s s2cbps] [-l localif] [-r remoteif]
+
+port = udp port of the proxy (default: 26000)
+name = name of the proxy (for use with say name: command)
+demoname = filename to which xx.dem is appended for each demo (xx=01,02...)
+observers = maximum number of observers (default: 0)
+c2sbps = maximum client-to-server bytes per second (default: no limit)
+s2cbps = maximum server-to-client bytes per second (default: no limit)
+localif = interface of the quake client (default: any interface)
+remoteif = interface of the quake server (default: any interface)
+Demo recording is initially off unless -d demoname is specified.
+Most options can be changed online from the quake client.
+
+This is all quite self-explanatory except maybe for the interface part.
+The localif and remoteif options select the interface that the proxy will
+listen to, so if you have a machine that has more than one interface
+(gateway), you can restrict connections to the proxy, to only one of them.
+
+The localif is also the address that the proxy sends to clients
+that broadcast the server info request. If the system that the
+proxy is run on has only one interface (ip-address), the localif
+should be set to that.
+
+
+Commands
+
+The proxy accepts commands from the first Quake client
+that connects to it (master user). Commands are inputted
+using Quake's say command. All commands start with:
+proxy:, so if you, for example, wanted to connect the
+proxy to a server, you would type: say proxy: connect servername.
+You can also use the messagemode (usually bound to the key t)
+to command the proxy. (press t and type: proxy: command)
+
+IMPORTANT: After you have connected to the proxy, all of
+the Quake's standard commands are still processed by the
+Quake client. So if you forget to use say proxy: connect,
+and use the plain connect instead, the Quake client will
+first disconnect from the proxy and then connect directly
+to the server.
+
+The help command lists all recognized commands, or displays
+help on specific command if given to it as a parameter. For
+example: say proxy: help record, would display help on the
+record command.
+
+
+Chaining
+
+Chaining means connecting the proxy to another proxy. You
+could, for example, have a proxy on your local machine
+filtering outgoing data (see packet filtering), and a proxy
+on your isp's machine filtering incoming data. There are
+two special commands to support chaining: transparent
+and wakeup. The transparent command puts the first proxy
+(that is not transparent) in the chain to transparent mode.
+In transparent mode the proxy only responds to a wakeup
+command. This way you can have a chain of proxies, and your
+commands will be processed by the last proxy. If you want
+to enable command processing on a proxy that was put to
+transparent mode, you can do it by saying proxy: wakeup n,
+where n is the number of the proxy in the chain (first = 1)
+that you wish to activate.
+
+NEW IN 1.02: You can use the commandline option -n to give
+a name to a proxy. Commands can then be sent to a particular proxy
+by using its name, instead of 'proxy', in the command. For example:
+if you start a proxy with faqproxy -n pent, you can give commands
+to that proxy with say pent: command. However, all proxies still
+answer to 'proxy:', so if you use that form, the first proxy in
+the chain, that is not transparent, will process the command.
+
+
+Getting started
+
+First you need to get the proxy executable. In the download
+section we have binaries for the most common platforms.
+More binaries will be compiled if someone sponsors us with
+new hardware. :)
+
+The easiest way to test the proxy for the first time is to
+run it on the same machine as you run the Quake client on.
+Just run without options and it should print out some stuff
+and then Waiting for client... Now go to Quake and type
+connect. If there are no other Quake servers in the network
+neighborhood the Quake client should connect to the proxy
+and you should get a welcoming message from the proxy.
+(If not, you can try typing connect localhost or
+connect 127.0.0.1.)
+
+Now that you have connected to the proxy you might want
+to take a look at the list of commands that the proxy
+understands. You can get the list by typing say proxy: help.
+As you can see, all commands start with say proxy:, followed
+by the command you wish to pass to the proxy.
+
+Now we can try connecting the proxy to a Quake server.
+Type say proxy: connect x, where x is the name of your
+favorite Quake server. You should get a message: trying...
+If nothing happens after that, you can hit the cursor up
+key to get the previous console command, and then hit
+enter to try again. If all goes well you should soon
+be connected to the server. After connecting to the server
+the proxy is still listening for your commands so you
+can say proxy: disconnect, for example. But don't
+disconnect yet, there is more stuff to try.
+
+Want to test the demo recording? Just type
+say proxy: record x, where x is the name of the demo
+file that will be created. The proxy appends xx.dem
+to the name, where xx is the number of the recorded
+level starting from 01. If all went well the proxy
+should tell you that it has started recording. Frag
+a few guys and type say proxy: record stop. This will
+end the recording. The proxy saves the recorded demos
+in the current directory, so if you wish to play the
+demos, you must first copy them to the id1 directory.
+You can also start the proxy in the id1 directory or
+give the full path name to the record command ie.
+say proxy: record c:\quake\id1\test, for example.
+
+Then you can try the observer mode. If you are running
+linux quake, you can start another Quake client and
+connect it to the proxy the same way as the master user.
+If you are running Q95, and don't have access to
+another machine nearby, you can ask someone on the
+server to try the observer mode for you. Ask him
+to type status in the console. Then ask him to type
+connect x, where x is the number that the status
+command lists for your name. If all goes well you
+should get a message: observer unnamed joined,
+and after that: observer unnamed renamed to hisname.
+The observer now sees everything excatly like you.
+(NOTE: If you are connected to the net via a modem,
+ and the proxy is running on your local machine,
+ the connection may be too slow to handle both you
+ and an observer.)
+
+In order to send messages to the observer you need
+to know a few things: The master user has two message
+modes: local and global. In global message mode messages
+are sent to the server as usual, and in local message mode
+only observers will see your messages. You can change
+the message mode with the proxy command mmode, for example:
+say proxy: mmode local, would change the message mode to local.
+It is wise to bind the two message modes to two keys,
+as you will need to switch between them often.
+
+Observers have only one message mode, their
+messages only go to other observers and to
+the master user. So other players in the game
+WILL NOT be able to see messages from observers.
+And you can probably figure out why.
+
+The proxy can also be configured to filter packets,
+which can help your ping if you have a slow connection.
+Check the features section for more info on packet
+filtering.
+
+
+Authors
+
+Juha Kujala <jmkujala@cc.jyu.fi> aka Perkele<faq> @ Quake
+Ilkka Rajala <r151925@proffa.cc.tut.fi aka Zibbo[faq] @ Quake, Zibbo @ irc
+
+

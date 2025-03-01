@@ -1,0 +1,60 @@
+How to use the Cheapo Proxy.
+----------------------------
+1) Start the cheapo proxy.
+2) Start your qwcl (normal or gl)
+3) In the console of qwcl, type connect localhost (connects to the proxy)
+4) Then type .connect XXX.XXX.XXX.XXX (the actual server IP)
+5) Play quake!
+
+The . before the command is for the proxy, you will need to add a . before any command you type in the console. The proxy remains in the background and doesn't seem to effect your ping in any way.
+
+Map.loc files
+-------------
+I have prepared the location points for the "main" TF maps = 2fort5r, well6, rock1, bam4 
+and some DM maps = DM2, DM3 and DM6. These will automatically load when you connect to that map. Make sure you put them in the same directory as the cheapo proxy executable. There are typically 50 or so points marked on each TF map, which allows us to accurately describe where things are, all with the use of 1 bound key (see below)
+
+Config commands
+---------------
+Commands to add to your config.cfg file
+(this is pasted directly from mine)
+
+For TF
+------
+bind "F1" "say_team Incoming %t"
+bind "F2" "say_team Outgoing %t"
+bind "F3" "say_team %t"
+bind "F4" "f_report"
+bind "F5" "say_team Enemy killed"
+bind "F6" "say_team I'm dead - my position's unguarded!"
+bind "F7" "say_team Acknowledged"
+bind "F8" "say_team Nope can't do it"
+bind "F9" "saveme;say_team Medic I need health, currently = %[h]"
+bind "F10" "say_team Engineer I need armor, currently = %[a]"
+bind "i" "say_team %e enemy/enemies encountered %l"
+
+For CA
+------
+bind "F1" "say_team Health is at = %h"
+bind "F2" "say_team Armor is at = %a"
+bind "F3" "say_team I'm currently at = %l"
+bind "F4" "say_team I'm at %l, %e enemies present!"
+
+Definitions
+-----------
+%t = will give you target and location.
+%l = location
+%e = number of enemies
+%h = your current health
+%a = your current armor
+f_report = health, armor and weapon ammo report
+
+Valid targets for the %t command are = weapons, players, flags, keys, sentryguns, dispensers basically anything!!! you may want to diable it from detecting "packs" though. If you type .point in the console it will tell you all the things it detects. To specify what you want you would write ".point players misc" to only detect players and misc things, whatever you leave out won't be picked up by the %t command. If you are the flag carrier and you die, you should "stay in your head" and point to the flag and press %t (F3 in my config) this will broadcast the location of the flag. You may also want to quickly spot and enemies / sentries that you can see and broadcast them also... =)
+
+%l looks up the marked map data, if you want to create names in a map you do the following, in console write ".mark (name of point)" It then creates the point.
+
+If you have any problems setting up the proxy, Email me or ICQ me....
+
+Cheers,
+Ben
+Avarice
+(c) CCW 1998

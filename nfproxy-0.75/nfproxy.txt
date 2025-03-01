@@ -1,0 +1,1307 @@
+Welcome to [NF]Proxy/NITRO(Lite) by Niewi of Nitro Force
+--------------------------------------------------------
+This Proxies are dedicated to all team games lovers out there!
+so  - enjoy using them!
+
+
+and another proxy ...
+---------------------
+the new release of [NF]Proxy comes with three proxies! the third one is called NLite (NitroLite)
+and features only %l and marking/list/tracking commands  - nothing else!
+no fps-boosting/pointing/timer or teamplay commands.
+its mainly thought for the game uk against nine but i think this one will be very welcome to a few hardliners out there!
+the protection system (f_modified/f_fpd) is awailable in all three proxies and provides a very high level of security.
+
+you can easily switch between all three proxies - you just have to start the one you like!
+the proxies are fully compatible what means you can use one config file (NFProxy.cfg) for all three proxies.
+commands in config files which are not supported by the proxy are ignorred.
+
+THIS DOCUMENTATION IS FOR ALL THREE PROXIES!!!
+
+
+What does this Proxy cost?
+--------------------------
+NOTHING, just enjoy it and if you are happy about it or have questions
+or ideas or criticism or ... blah blah blah ...  send me an email.
+
+RALFN@ROCKETMAIL.COM
+
+visit me in irc channel #quake.nfproxy (in the IRCNET!!!) or in #NFProxy (QuakeNet)
+
+you can always get the newest version at the url DAS.GEMETZEL.DE/NITRO
+
+
+
+it's time to say thanx!
+-----------------------
+yeah it's time to say thanx to all who are supporting me - your response is great!
+and to the genial web designer r-tom of clan exo, who is responsible for this really great pages like sk's, exo's
+and our plus the fabulous [NF]Proxy button. if you like my proxy use the [NF]Proxy button on your page!
+i also wish to say thanx to my clan mates for their nerves and understanding in proxy testing (they are my alpha testers:-))
+and to uwe girlich which work helps me a lot in understing the quakeworld network protocol!
+
+greatings goes to all teamplay loving clans out there - and guys don't forget -> it's just a game :-)) 
+
+and last but not least to you, because you are reading this bullshit!
+
+
+a few words ...
+---------------
+i'm now working on this proxy for 5 month. the sourcecode, completely build from scratch
+is written in ANSI C. it has 380kb and 10500 lines of text (without any remarks ...)!
+the compiled executeable is a full Win32/Unix code with an console(window) for text output.
+
+i'm not able to test all conditions all functions combined and all computers out there!!!
+if you use [NF]Proxy -  you have to report bugs to me, or you have to life with them!
+
+ok, thats all for now ...
+
+
+
+my opinion about proxies and cheating
+-------------------------------------
+i'm writing this proxy to lift qw team games to a higher level of strategy,
+this proxy is not meant for cheating, it just brings you the features that id software
+forgot to implement for team games. the only teamplay features of qw are teamplay mode and 
+the say_team (messagemode2) command. some of you will say: hey that's all we need! but i don't
+think so. it's the strategically aspect of qw i prefer. the proxy gives you the possibilty to
+play with friends in the internet like sitting in the same room without long searching for 
+the keys with the correct messages. other features allow non-gl players to have the same advantages
+like gl players, or give you a higher framerate. the proxy can filter the interresting game
+aspects and delete the other ones.
+yes, sure the proxy brings features which are close to cheating, but things like powerup timers 
+are blockable by setting the fpd variable.
+
+remember: it's the player using the proxy who is playing the game not the proxy, so the proxy does not
+aim, shoot, think or play for you!!!
+
+
+History of [NF]Proxy/NITRO/NLite
+--------------------------------
+
+Version 0.75:
+-------------
+news:
+-moved the old version informations to a new file (History.txt)
+-the new detonator drivers for riva tnt do not support the ega 80*50 text resolution used by my proxy for the status screen!
+ i think its a bug like the fullscreen vga crash in the earlier driver version of the riva tnt driver (try ALT+F9 in the good old norton commander)
+ if you have installed them and probs disable the status screen in the NFProxy.ini with QUIT = Yes!
+
+removed bugs:
+-sorry you tf freaks - i've copied (by accident!) an old location load routine over the new and there 
+ was this fucking limit again! you can use as much locations as you wish!
+-removed a bug that sometimes caused an illegal server message crash (only happens when clock/timers were disabled!)
+-.gospec and .goplay were not working correctly. this was a timing problem and should now be removed!
+
+changed:
+-INTELLISKIN IS CHANGED! now _a will be added if someone has armor not if he needs it! so be sure everyone in your team
+ is using a version greater or equal 0.75 of [NF]Proxy/NITRO!
+-the DropClientPackets feature can no longer be blocked using fpd! i've changed it because this feature is just
+ producing lag but it don't changes the ping! (if you drop every 5. packtet(20%lag) the ping will only advance +2ms!)
+-%s now reports with powerups (in short form)!
+-advanced the security of f_modified.
+
+new features:
+-new feature called .intellicrosshair - it changes the color of the crosshair depending on your state (armor/health).
+ you can define a color for 'all ok', 'no direct hit' and 'no rocketjump' (use .setcrosscolors).
+ you have to use 'crosshair 2' to use this feature! (thanx to flocutus for the idea!)
+-you know this d_mipscale 40  (switching to 'lego mode') command for non gl quake? you can use gl_max_size 2 to do the
+ same in glquake - the only problem is that this changes the skins too in gl.
+ the new .gllego command removes this problem!
+-new easyfont command $\ - it can be used to hide your name in messages! all in the message before the $\ will
+ be deleted! the effect will be there even when clients don't use a proxy!
+-because you can send fakes messages using $\ i've added a .nofake command which let you see who send it!
+-new messagecommands:
+ %N will hide the send message from yourself! (for took/death/respawn triggering for example)
+ %C will insert the client name (your name) usefull if you use $\ to hide your name
+ %J will insert the name of the guy who recently joined the server! using this you can give him a warm welcome ;-)
+-you can now change the locdir online with .setlocdir! usefull if different loc files are needed for same maps! (tf/ctf/dm)
+-messagegroups can now be used with INTELLICOM!!! have a look at the messagecommands %s %S!
+ if you use %S (status) with messagegroups all members of the specified group will answere - not only the ones in your vicinity!
+-with .shortpowerupmode you can force Own Powerups (%P) to be reported in Team Powerup style (%p)
+-i've added teamstatistics to the .listfrags / .centerprintfrags
+-added duel support to .easyrecord!
+
+
+
+Files included
+--------------
+NFProxy(.exe)           : the big Proxy :-)
+Nitro(.exe)             : the little bother 
+NLite(.exe)             : the little bother of the little brother ;)
+NFProxy.ini             : the initialisation file for the Proxy
+NFProxy.txt             : this Documentation
+History.txt             : The Versions history of [NF]Proxy/NITRO
+Troubles.txt            : a textfile with a few tips for peoples having troubles using [NF]Proxy/NITRO!
+dm4.loc                 : a sample loc file for dm4 (for position depending reporting!)
+SndList.txt             : a list of all sounds included in quake for soundtrigger functions!
+
+NFProxy.cfg             : a sample main config file     - copy it in your quake\id1\ directory
+NFProxy_arena.cfg       : config file for Rocket Arena  - copy it in your quake\id1\ directory
+NFProxy_carena.cfg      : config file for Clan Arena    - copy it in your quake\id1\ directory
+NFProxy_fortress.cfg    : config file for Team Fortress - copy it in your quake\id1\ directory
+NFProxy_frogbot.cfg     : config file for Frogbot       - copy it in your quake\id1\ directory
+NFProxy_fbot.cfg        : config file for Frogbot       - copy it in your quake\id1\ directory
+NFProxy_spectator.cfg   : gets called if you start in/change to spectator mode    - copy it in your quake\id1\ directory
+NFProxy_player.cfg      : gets called if you change from spectator to player mode - copy it in your quake\id1\ directory
+
+
+Installation
+------------
+Make a directory for example NFProxy and copy all files in it.
+If you want to use the sample nfproxy*.cfg files copy them in your quake\id1\
+directory and change them to your desire ...
+
+-Thats it!
+
+
+How do i start [NF]Proxy/NITRO?
+-------------------------------
+usage  : NFProxy [-pPORT] [-cIP:[PORT]] [-g[QWCLNAME]] [-bQUAKEDIR] [-lLOCDIR] [-x] [-q] [-n] [-h]
+
+         -pPORT      : setting the proxy client port to PORT (default is 27500).
+
+         -cIP:PORT   : initialisation of the autoconnect to server feature.
+                       on connecting the localhost you will be automatically
+                       connected to the server described by IP:PORT
+
+         -bQUAKEDIR  : set the location of your quake directory to QUAKEDIR
+                       needed for the -g switch(only Win32 Version!) and the 
+                      .easyrecord command
+
+         -lLOCDIR    : set the location of your locfiles directory to LOCDIR
+
+         -h          : show help
+
+         -q          : quiet mode : for GL users with problems on connecting the [NF]Proxy! (black screen!)
+                                    or for linux users having problems with telnet sessions (segmentation fault!)
+
+         -t          : completely block poweruptimers! (No Timers is added to your userinfo!)
+                       and the seconds on the clock will be removed...
+
+         -x          : exit [NF]Proxy after connection
+
+the following commandline parameters are only available in the Win32 release!
+
+         -g[QWCLNAME]: initialise GameSpy startup feature and if given set the name of the preferred qwcl file 
+                       please read 'the Easy GameSpy Startup' section!
+
+         -n          : use alternative network routine (try it when you have probs with lag!)
+
+example: NFProxy -c192.168.0.99:27666 -p27501 -bd:\quake     (Win32 Sample)
+
+         NFProxy -c192.168.0.99:27666 -p27501 -b/games/quake (Linux i386 Sample)
+
+         start NFProxy/NITRO using Port 27501, set your quake directory to
+         'd:\quake' (Win32) '/games/quake/'(Linux I386) and use autoconnect 
+         on server 192.168.0.99 port 27666.
+
+you can use all parameters for all three proxies!
+
+YOU DONT HAVE TO USE ANY COMMANDLINE PARAMETERS IF YOU USE THE NFProxy.ini
+EXCEPT THE -g SWITCH FOR GAMESPY STARTUP (WIN32)!
+
+
+NFProxy.ini file description
+----------------------------
+instead of using the startup parameters you can use the ini file to initialise the proxy!
+if you want to disable any parameter in the NFProxy.ini just add a # in front of the Parameter name.
+the parameters themself are described in the NFProxy.ini file.
+you can override settings in the NFProxy.ini by using the commandline switches!
+
+
+How do i connect to [NF]Proxy/NITRO?
+------------------------------------
+man thats easy:
+1. start NFProxy.exe/Nitro.exe (Win32) or NFProxy/Nitro (Linux)
+2. start your qwcl client,
+3. type 'connect localhost' or 'connect 127.0.0.1' in your quake console.
+
+- thats it!
+
+
+How can i stop it?
+------------------
+Use ctrl+c or ctrl+break to stop it!
+
+
+How to create configuration Files for [NF]Proxy/NITRO
+-----------------------------------------------------
+[NF]Proxy offers you a large selection of features that have to be configured.
+To do this the easy way the Proxy calls a config file called NFProxy.cfg, where you have
+the possibility to configure the Proxy to your desire.
+A sample NFProxy.cfg file is included in the Zip file, copy it to your quake\id1 directory 
+and edit it!
+
+Some features of [NF]Proxy are not usefull in all cases, for example the .fastrespawn feature
+lets you, when enabled, jump like wild on RocketArena or ClanArena servern, because the mods
+sets you to a death status until it's your turn to play.
+If you want to play against Frogbots you have to disable the .deadbodyfilter or you won't
+see any bots!
+If you play TeamFortress its not very usefull to use the .bestweapon feature because not all 
+weapons are equal to the normal quake weapons.
+
+My solution for this Problem is very easy! If you connect to a server running a not standard
+qw game like arena/clanarena/headhunter/teamfortress/orange/ or else the Proxy tries to call a config
+file called NFProxy_GameDirName.cfg!
+for example if you are playing RocketArena or ClanArena the the Server you are playing on sets
+the GameDirName to arena, so the Proxy will call the NFProxy_arena.cfg.
+I have included a few config files for different mods, if you wish to use them copy them in your 
+quake/id1 directory and edit them.
+The advantage of this method is that the Proxy configuration is done automatically for every mod!
+
+Some people need a config file for every map they play, expecially in teamfortress so the proxy tries
+to execute a mapdepending config file called NFProxy_mapname.cfg. If the name of the current map is
+dm6.bsp the proxy tries to execute NFProxy_dm6.cfg!
+
+If you CHANGE from Player into Spectator the Proxy calls a NFProxy_spectator.cfg
+If you CHANGE from Spectator into Player mode  the Proxy calls a NFProxy_player.cfg
+
+I'm using this 2 configs to change my mouse bindings, so i can spectate using my mouse for switching
+the spectator modes the free tracking feature and to switch from one player to another ...
+
+
+
+Easy GameSpy Startup (only available in the Win32 Version ...)
+--------------------------------------------------------------
+[NF]Proxy has the possibillty to perform an easy startup for gamespy users!
+that means it will be started from gamespy, start (gl)qwcl executing your configs
+connect to (gl)qwcl and automatically connect the desired server for you.
+After closing (gl)qwcl it will (when using -x) automatically exit!
+This way all your GameSpy settings for (gl)qwcl will be set correctly (including
+password and spectator)!
+
+Ok guys, this is easy:
+If you dont have NFProxy.exe/Nitro.exe in your Quake Main directory create a subdirectory id1
+in your NFProxy.exe/Nitro.exe directory!
+
+Start your GameSpy and click on the TOOLS menu, choose OPTIONS and search for the 
+'QuakeWorld Client' section. disable (uncheck) the Use Network Connections for QuakeWorld
+feature - thats all to do here!
+
+Now click on the GAMESPY menu, choose GAMES AND FILTERS ...
+in the Quake Section click on FOLDER: and choose in the upcoming menu the folder of NFProxy.exe!
+
+enter : NFProxy.exe -g : 
+or    : Nitro.exe -g : 
+
+recognize the : at the end! don't forget it and remember it has to be at the end - so insert 
+other [NF]Proxy parameters before it!
+
+To tell [NF]Proxy where to find you QuakeWorld, what exe should be executed and which parameters should
+be passed open the NFProxy.ini file and edit the following parameters: QWDIR, QWEXE and QWPARAMETERS
+
+if you have problems like getting a black screen try to add -q to the command line or set QUIETMODE = Yes in 
+the NFProy.ini file. (for gl recommended, for users with fast computers playing normal qwcl, too!)
+
+if you want [NF]Proxy to exit with QuakeWorld set EXIT = Yes in the NFProxy.ini file or add the parameter -x 
+to the command line!
+
+WARNING: don't use a BATCH file to start the (gl)qw client, start it directly!!!
+
+Thats all...
+
+
+Whats the meaning of the fields on the status screen?
+-----------------------------------------------------
+Most of them explain themself, so i only mention the players fields.
+Player Name, Frags, Ping, Team and Skin are equal to the QW variables.
+When a '>' is in front of a Player's name, he's using [NF]Proxy!
+
+Rank    : can be Enemy or Friend.
+Mode    : discribes the Players Status, its unused, Player or Spect.
+Sc      : means Suicides. 
+TF      : means Teamfrags - this are the real Teamfrags the Player did.
+          Telefrags of Teammembers are counted as teamfrags (some Team
+          mods count them as a normal Frag! - i don't !)
+Frags   : this are your 'real' Enemy frags. Teamfrags and Suicides
+          are not included in this Fragcounter!
+KiA :     means Killed in Action. This is how much the enemy killed 
+          you! It's without your Teamfrags, without Suicides and
+          without teamfrags caused by teammembers on you!
+Effi    : means the efficiency.
+          calculation: (100/(Frags+Suicides+KiA+Team Frags))*Frags;
+          its updated onscreen 1 time per second!
+          NOTE: this effi dont includes teamfrags on you by teammembers!
+
+
+The Powerup Timer System (only awailable in [NF]Proxy not in NITRO!)
+--------------------------------------------------------------------
+If powerups timers are enabled and not blocked by the server (fpd), each
+powerup has an on screen timer. The index of a Poweruptimer is always the same
+in the same map, that means every time you enter for example E4M3 the Q0 timer is
+associated with the QUAD at the GL/RA! You can list all Powerups in the map with the
+.listpowerups (.lp) command, if you are using a loc file you can list the powerups with 
+the Locations using .listpowerupslong (.lpl) in this case the Powerups are listed in the
+same order as the Powerup Timers are displayed!
+If an Powerup is not taken by anyone or the condition of the the counter is unknown the
+timer is set to XXX.
+If someone takes an Powerup and you or anybody using [NF]Proxy hears the Powerup's pickup
+sound [NF]Proxy sends an internal information to the other [NF]Proxy users, so that their
+Powerup Timers can synchronize (yep - that means all [NF]Proxy users, even the enemy gets
+informed or will inform you!).
+[NF]Proxy identifies the Player who was the origin of the sound and tells you if an enemy
+or a team member picked it up (if it was a team members the name is displayed!).
+If a Player with a Powerup dies [NF]Proxy will tell you too.
+In case of a teamfrag, [NF]Proxy can't identify the victim because QW don't send its name!
+The color of the Timer will change from white to red in the last 15 seconds before the
+Powerup will appear till 3 seconds after it had appeared! The message command %g will report all 
+upcomming (red) Powerups to your team members!
+If the character between the Powerup index and the timer is a white block -  a member of your
+team has taken this powerup if its red a Enemy has it, if there is a ':' instead the powerup 
+is not longer activ (because the active time (30sec.) of the powerup has run out or the 
+owner of the powerup has died!)
+The Layout of the Powerup Timers can be set using the .sptl (see the Commands section)
+
+->you see that the Handling of Powerups is not as easy as it seems to be :-)
+
+
+Easyfont
+--------
+QuakeWorld has varius grafical characters that you can use to style your name or the messages 
+you send to others. The Problem is that the use of this characters is not as simple as it should be!
+At this point [NF]Proxy/Nitro gives you simple fontcommands to make it easier for you.
+You can use this fontcommands in your name, in locationnames (see .mark), in selfdefined names
+for powerups/armors (using the naming commands) and finally in all messages (say/say_team)!
+
+The fontcommands:
+#character  : this will color the character red (only usefull for names because messages are red by default in quake 
+              example: 
+              name #Niew#i (typed in the console this will set the name Niewi with a red 'N' and a red 'i'!
+##          : this will give you the normal '#', it's usefull when you use it for soundtriggering! 
+$number     : will give you the number in yellow!
+              example:
+              name $1$.$2$.$3 (typed in the console this will set the name 1.2.3 with red numbers!
+$(          : the left end of the regulators used in the quake options
+$=          : the middel of the regulators used in the quake options
+$)          : the right end of the regulators used in the quake options
+$a          : the controller of the regulator
+$<          : the left end of the underline
+$-          : the middel of the underline
+$>          : the left end of the underline
+$.          : a red middel dot
+$,          : a white middel dot (only in names!)
+$[          : a big red [
+$]          : a big red ]
+$_          : a space sign, use it instead of the normal space between grafical characters
+$b          : a filled red block
+$c          : a filled red arrow (pointing to the right!)
+$$          : gives you a $ symbol, it's usefull when you use it for soundtriggering! 
+$\          : this can be used to hide your name in messages! all in the message before the $\ will
+              be deleted! the effect will be there even when clients don't use a proxy!
+
+users of the OCRANA Leds (colored characters in red/green/blue/yellow - use the added gfx.wad and copy it in quake/qw)
+
+$R          : Red    led
+$G          : Green  led
+$B          : Blue   led
+$Y          : Yellow led
+
+example:
+name $[#N#F$]#5$,Niewi$,
+gives you my normal quakeworld nick name!
+
+
+Aliases defined and used by [NF]Proxy and NITRO!
+------------------------------------------------
+here is a list of all aliases used and called by [NF]Proxy/NITRO:
+
+alias f_team    "say_team Team %p"                  //called from autoreport
+alias f_enemy   "say_team Enemy %q"                 //called from autoreport
+alias f_death   "say_team Died at %d E:%E T:%O"     //called from deathtrigger
+alias f_respawn "say_team Respawned at %l"          //called from respawntrigger
+alias f_took    "say_team Took %i at %l"            //called from tooktrigger
+alias f_mapend  wait                                //called after every map
+
+if you want to use own aliases, you can define them in the NFProxy.cfg file in your quake\id1 
+directory!
+
+ALL ALIASES (except f_mapend) WILL ONLY BE CALLED IN TEAMPLAY MODES > 0 AND IF A TEAMMEMBER IS IN THE GAME !!!
+SO THEY ONLY GET CALLED WHEN NEEDED!
+
+
+f_queries supported by [NF]Proxy/NITRO
+--------------------------------------
+if you type this in your console in messagemode 1 (normal chat) all connected [NF]Proxy will answere!
+
+f_query                     answere
+
+f_fpd                     : returns the fpd value the proxy is working with and a crc checksum over the fpd value + the ip 
+                            of the connected server!
+                            if you are connected to a server and you want to check for fpd filters try it!
+                            if there is anyone online using a NFProxy V0.71 or greater who's proxy don't answeres to this
+                            query or which proxy answeres with a differnt message than yours he is a cheater!
+                            this is a very good protection thats impossible to hack - believe me!
+
+f_version                 : displays the version of the proxy + the crc of the proxy
+                            the crc is calculated over the whole proxy executable and the ip address of the current connected server!
+                            so the responsed crc changes from server to server!
+                            because the linux and the win32 version are different the proxy will add a W for the windows version
+                            and a L for the linux version!
+                            you can't compare the crcs of [NF]Proxy with NITRO on the same server because there are differences in the code!
+
+f_lagreport               : How much lag is produced by the Proxy
+
+f_modified [number/file]  : checks all modells/waves that can be used for cheating:
+                            
+                            armor.mdl/backpack.mdl/bolt2.mdl/grenade.mdl/invisibl.mdl/invulner.mdl/missile.mdl/
+                            b_g_key.mdl/b_s_key.mdl/player.mdl/quaddama.mdl/teleport.mdl/eyes.mdlb_bh100.bsp
+                            armor1.wav/damage.wav/damage2.wav/damage3.wav/health1.wav/inv1.wav/inv2.wav/inv3.wav/protect.wav/
+                            protect2.wav/protect3.wav/outwater.wav/water1.wav/water2.wav/land.wav/land2.wav/plyrjmp8.wav
+                
+                            if all are ok the proxy will print all ok and the crc calculated over all modells by the proxy.
+                            this crc is not compatible to any other crc checksum. you can only compare it to another nfproxy crc!
+                            
+                            the proxy calculates 2 total different crc's but only one will be displayed, this way it should 
+                            really be impossible to create fake files where both crc's are faked, because 1 crc is absolute proxy intern!
+
+                            the changed player model used in teamfortress is detected by the proxy and is checked correctly.
+                
+                            all modells which fail the crc check or can't be found by the proxy are listed!
+                            (crc) means wrong crc, (not found) means the proxy can't locate the file anywhere...
+
+                            you have to start qwcl using the proxy else f_modified will not calculate any crc's!
+                            the proxy checks the executed qwcl, if it don't knows the qwcl it will not calculate any crc's!
+                            supported qwcl clients: win32:(gl)qwcl2.3 (gl)qwcl2.33-05
+                                                    linux:(gl)qwcl2.3
+                
+                            if a parameter number is given the number will be added to the calculated crc. 
+                            the number has to be in decimal format! (the calculated crc is displayed in hex format!)
+                            for example : f_modified 256
+
+                            if a parameter file is given the proxy will add the crc of the given file (no pak files!) to the whole crc!
+                            for example : f_modified maps/dm6.bsp
+                            or :          f_modified3 boss2\pop2.wav
+
+f_modified2 [number/file] : like f_modified but without checking grenades and missiles (missile.mdl/grenade.mdl)
+
+f_modified3 [number/file] : like f_modified but without checking grenades, missiles and shaft (missile.mdl/grenade.mdl/
+                            bolt.mdl/bolt2.mdl/bolt3.mdl)
+
+What are the Proxy Commands?
+----------------------------
+
+short      long             parameter   What it will do...
+
+help commands:
+--------------
+.h      .help                           list the syntax of all standart commands
+
+.ha     .helpadvanced                   list the syntax of all advanced commands
+
+.hm     .helpmessages                   list all message commands with their meaning (very short form ;-))
+
+connecting commands:
+--------------------
+.c      .connect            [ip:port]   connect a server described by ip:port
+
+.ac     .autoconnect        [on/off]    activate/deactivate the AutoConnect Option
+
+.rc     .reconnect                      reconnect to the last server
+
+.dc     .disconnect                     disconnect from the server
+
+.sc     .stopconnecting                 stop to try to connect a server
+
+list commands:
+--------------
+.alf    .autolistfrags      [on/off]    if enabled (default) after the fraglimit is reached or the timelimit the fraglog
+                                        will be printed to the console.
+
+.cpf    .centerprintfrags   [on/off]    shows the fraglog centerprinted (nice for speccing a game!)
+
+.la     .listarmor                      list all armors in the actual map.
+
+.lal    .listarmorlong                  list all armors in the actual map with place (you need a loc file!)
+
+.lp     .listpowerups                   list all powerups in the actual map.
+
+.lpl    .listpowerupslong               list all powerups in the actual map with place (you need a loc file!)
+
+.lf     .listfrags                      list all active players and there current frag status
+                                        when connecting to a server and on mapchange the fraglog is reseted.
+                                        the meaning of the listed fields are eqal to the meaning
+                                        of the status screen! for a description look at the 'Whats the
+                                        meaning of the fields on the status screen?' section in this text!
+
+.rf     .resetfrags                     resets the fraglog
+
+.w      .who                            list all players with name, team, skin and rank
+
+.co     .colors                         list all players with top and bottom color and user_id (usefull for qw user command!)
+
+.pi     .proxyinfo                      list all players with he proxy they are using!
+                                        
+timer commands:
+---------------
+.cpt    .centerpt           [on/off]    if centerpt is enabled the powerup timers will be printed centered 
+                                        (left parameter of .sptl is ignored!)
+
+.sptl   .setptlayout [down left length] sets the layout for the powerup timers. this command is very powerfull
+                                        you can totally design how the powerup timers will appear. 
+                                        down  - move the powerup timers down lines down
+                                        (for a resulution of 320*200 i prefer 14)
+                                        (for a resulution of 512*384 i prefer 35)
+                                        (for a resulution of 640*480 and 800*600 i prefer 46)
+                                        left  - move the powerup timers left characters from the left
+                                        length- sets the maximum length of one powerup line
+                                        the default is set for a resolution of 320*200:
+                                        down=14 left=0 length=32
+                                        to move the powerup timers in 320*200 to the left screen side in hub stile use
+                                        down=0 left=0 length=8
+                                        to move the powerup timers in 320*200 to the right screen side in hub stile use
+                                        down=0 left=34 length=6
+
+.cl     .clock              [number]    you can enable a clock which shows your system time!
+                                        there are three different modes for the clock:
+                                        number      mode
+                                        0           off
+                                        1           always
+                                        2           only when Powerup Timers are disabled
+                                        the clock can be positioned using the poweruptimer layout commands .sptl and .cpt!
+
+the following commands are only available in [NF]Proxy (not in NITRO):
+.pt     .poweruptimer       [on/off]    activate/deactivate the PowerupTimers
+
+.pptl   .printptlong        [on/off]    if you enable this feature all powerup counters will be diplayed with the
+                                        name of their location (only if you use a loc file!)
+
+.it     .inittimer          [time]      this will add a user defined timer to the timers list. you can define up to 10
+                                        different timers.
+                                        [time] is the start time in seconds, the timer will count down from it.
+                                        so if you use the comand .it 60 the timer will be added and count down from 60 to 0.
+                                        you can for example bind a command like "say .it 60" (for Quad) or "say .it 300" (for Pent/Ring)
+                                        to a key to time powerup events!
+                                        THIS TIMERS ARE ONLY ACTIVE WHEN POWERUPTIMERS ARE NOT FORBIDDEN!!!
+
+.ct     .cleartimer                     clears up all timers started with .inittimer
+
+
+teamplay commands:
+------------------
+.ar     .autoreport         [on/off]    activate/deactivate the AutoReport of taken Powerups
+
+.es     .enemyskin          [skin/off]  set a enemy skin or disable enemyskin
+
+.ts     .teamskin           [skin/off]  set a team skin or disable teamskin
+
+.ic     .intellicom         [on/off]    activate/deactivate the intelligent autocommunication by deactivating it you 
+                                        can't use %s %S and your proxy will not answere to %s %S commands.
+
+.is     .intelliskin        [on/off]    enable this to allow your proxy to send/receive advanced status informations to/from your mates!
+                                        the proxy uses this information to switch the skins of your teammates so you can see what your
+                                        teammates need!
+                                        if your teammate NEEDS health the proxy will add a '_h' to the skin name of your mate
+                                        if he HAS armor it will add '_a' to the skin and in the case of both the proxy adds '_ha'
+
+                                        for example the name of the skin of your mate is 'team' the proxy will change it to 'team_h' if he
+                                        needs health! to 'team_a' if he has armor and 'team_ha' for both!
+                                        if health is ok and no armor is there the normal skin will be set!
+
+                                        you can use the teamskin feature so you don't need to use much skins, just one set of skins!
+                                        you can set the limits for the skin switch using .setneed!
+
+.ich    .intellicrosshair   [on/off]    if enabled it changes the color of the crosshair depending on your state.
+                                        it sets the 'all ok' color if you have enough health+armor to stand a direct hit (with rocket).
+                                        it sets the 'no direct hit' color if a direct hit will kill you but you are still able to do a rocketjump
+                                        it sets the 'no rocketjump' color if a rocketjump can kill you.
+                                        the default colors are:
+                                        'all ok'        = 15  (white)
+                                        'no direct hit' = 111 (yellow)
+                                        'no rocketjump' = 251 (red)
+
+                                        im calculating the haelth/armor values for switching the color using the same algorythm like qw.
+                                        so that the handling of armor and health is absolutely correct.
+
+                                        the proxy switch the color for the worst case, that means if its set to 'no rocketjump' you may be able 
+                                        to do a rocketjump, this depends on your skills!
+                                        this way you can be sure that if the crosshair is set to the 'no direct hit' color you can in any case do
+                                        a rocketjump and if the crosshair is set to 'all ok' color you can in any case take a direct hit!
+
+                                        THIS FEATURE IS JUST WORKING WITH 'crosshair 2' OF QUAKEWORLD!
+
+                                        look at the .setcrosscolors if you want to change the default crosshaircolor values!
+
+.scc    .setcrosscolors     [ok dh rj]  this sets the crosshaircolor values used by .intellicrosshair
+                                        you have to set 3 values each can be a number between 0 and 255.
+                                        the first sets the 'all ok' color, the second the 'no direct hit' color and the 
+                                        third the 'no rocketjump' color.
+
+.st     .soundtrigger       [char/off]  this controlls the soundtrigger function. a soundtrigger lets you play sounds
+                                        remote on the computers of your teammates. its very usefull to add sounds to
+                                        importend messages, so they won't get lost in trouble.
+                                        the soundtrigger sound will played instead of the message ping!
+                                        you can use own sounds (just copy them to the id1/sound directory) or, if you 
+                                        are lazy, you can use original quake sounds.
+                                        its not very usefull if you use sounds which are normally be used in quake world,
+                                        i recommend you to use quake sounds from monsters for example, because anyone
+                                        has them and they are not used in quakeworld at all! you can find them in the 
+                                        included sndlist.txt file in your nfproxy directory.
+                                        ok, back to topic: to enable the soundtrigger, you have to specify the character
+                                        to be used for soundtriggers. use a character thats not used very often in quake
+                                        chats for example $, #, !, ; ...
+                                        the rules:  -the proxy checks the characters after the soundtrigger character and will only 
+                                                     interpret it as a soundtrigger if the following character is not equal space (' ') or 
+                                                     end of text.
+                                                    -the sound to trigger must end with '.wav' when send with a chat message (example 1&2)!
+                                                     when just sending a soundtrigger '.wav' is not needed !
+                                                    -all players in a team must use the same soundtrigger character, or
+                                                     some people wont hear anything!
+                                                    -the proxy just checks the first soundtrigger character it will find in chats, so if
+                                                     you use '!'  for soundtriggering be sure to use it correct (have a look at example 1 & 2)!
+                                                    -if just a soundtrigger will be send without a message no message will be printed,
+                                                     just the sound will be played!
+                                                    -to disable the soundtrigger use the parameter off
+                                                    -the soundtrigger is disabled by default!
+                                        the following examples are using the character '!' for soundtriggering (.st !)
+                                        example1:
+                                        you say: Attack RA !boss2/pop2.wav
+                                        this will print 'Attack RA' on screen and play boss2/pop2.wav
+
+                                        example2:
+                                        you say: !boss2/pop2.wav Attack RA !!!
+                                        this will print 'Attack RA !!!' on screen and play boss2/pop2.wav
+
+                                        example3:
+                                        you say: !boss2/pop2
+                                        and you say: Attack RA!!!
+                                        this will print 'Attack RA!!!' on screen and play boss2/pop2.wav
+                                        but the second message will play a message ping that will disturb the playing 
+                                        of boss2/pop2.wav !
+
+.dmf    .deathmsgfilter     [number]    this will filter the death messages received from the server, there are 3 modes:
+                                        number  who's death messages will be filtered
+                                        0   none
+                                        1   others
+                                        2   all
+
+.odm    .owndeathmsgs       [on/off]    if enabled just deathmessages from teammembers will be displayed. if the teammember is 
+                                        in your vicinity when dying the message will be displayed in red else in white.
+                                        use this command in combination with the deathmessagefilter!
+
+.dt     .deathtrigger       [on/off]    when enabled and you are using a loc file, this will automatically call the f_death alias when you die.
+                                        in teamfoertress the deathtrigger will only be called if you have the enemy flag when dying!
+                                        [NF]Proxy defines on connecting automatically the f_death alias, have a look at the 
+                                        alias section in this document for further infos on this.
+
+.rt     .respawntrigger     [on/off]    when enabled and you are using a loc file, this will automatically call the f_respawn alias when respawning.
+                                        [NF]Proxy defines on connecting automatically the f_respawn alias, have a look at the 
+                                        alias section in this document for further infos on this.
+
+.tt     .tooktrigger      [a w m p h]   controlls which objects will be automatically reported when you take them by calling the f_took alias
+                                        [NF]Proxy defines on connecting automatically the f_took alias, have a look at the 
+                                        alias section in this document for further infos on this.
+                                        you can set armors weapons mun packs and health
+                                        the value for armor can be between 0 and 3
+                                        number      reported armors
+                                        0           disables the funktion
+                                        1           ga ya ra
+                                        2           ya ra
+                                        3           ra
+                                        which weapons will be reported depends on your weapon priority set with .setweaponpriority
+                                        if you set the weapon value to 1 it means that only the weapon with the highest priority will
+                                        be reported, if you set it to 2 the first two weapon with the highest priority will be reported
+                                        IMPORTEND: weapons will just be reported in dmm1!!!
+                                        the mun value meaning is listed below
+                                        Value       reported ammunition
+                                        0           nothing
+                                        1           Rockets Cells
+                                        2           Rockets
+                                        3           Cells
+                                        the next one activates/deactivates the pack reporting
+                                        a value of 0 disables it any other will enable it!
+                                        and the last one activates/deactivates the reporting of taken 100health!
+                                        its working like the pack value, if set to 0 it's disabled else it's enabled!
+
+                                        ok i know it's hard stuff, but this is the easiest way for me :-)
+                                        so here are some examples:
+                                        .tooktrigger 3 2 2 1 1 report took of RA, the 2 importend weapons, Rockets,100 Health and Backpacks!
+                                        .tooktrigger 3 0 0 0 0 just reports taken RAs
+                                        .tooktrigger 0 0 0 0 1 just reports taken Backpacks
+                                        
+.sn     .setneed         [h a c r n s]  this command controlls the need messagecommand (%z) and the intelliskin.
+                                        .setneed sets the limits for the things to be reported!
+                                        it sets the limit of health armor cells rockets nails and shells
+                                        the standard setting is 
+                                        .setneed 50 30 10 5 25 10
+                                        this sets health to 50 armor to 30 cells to 10 rockets to 5 nails to 25 and shells to 10!
+
+                                        you can disable the need report for items by setting them to 0, 
+                                        for example if you don't want health to be reported set the limit for health to 0:
+                                        .setneed 0 30 10 5 25 10
+
+.tc     .teamcolor        [TC BT/off]   this forces the TopColor and the BottomColor for all teammates to TC BT!
+                                        TC and BT are numerical values between 0 and 15!
+                                        this feature is disabled when using .colorsetskin!
+                                        the Parameter off disable it!
+
+.ec     .enemycolor       [TC BT/off]   like .tc but for enemyskins!
+
+.css    .colorsetskin      [on/off]     this forces the proxy to set the enemy/teamskins depending on your bottomcolor
+                                        it's usefull for teamfortress and clanarena!
+                                        this is the only mode in teamfortress, you don't have to set it, it's turned on 
+                                        automatically when connecting the teamfortress server!
+
+.f      .filter           [char group]  this command initialises the messagegroup handling of the proxy.
+                                        messagegroups can be used to organise the team communication more intelligent.
+                                        every one can belong or send to one or more groups
+                                        messages without a destination group will be displayed in every team
+
+                                        messagegroups can be used with INTELLICOM! have a look at the messagecommands %s %S for a description!
+
+                                        to use messagegroups the proxy needs to know 2 things:
+                                        1. what charakter should be used to indicate that the message is send to a messagegroup.
+                                           (this is the first parameter)
+                                           - you can use any character - there is no restriction.
+                                           - if you use the soundtrigger don't use the same character like the one you use for soundtriggering
+                                           - soundtriggers send to messagegroups will only be played by the destination groups
+                                        2. what group(s) you belong to
+                                           - you can use any character for a group
+                                           - a group is defined by a single character 
+                                           - you can be part of different groups at the same time
+
+                                        examples:
+                                        
+                                        the 1. guy is part of the defence team and has set
+                                        .filter #d
+                                        this defines the '#' character as indicator for messagegroups
+                                        and tells the proxy that he is part of the messagegroup 'd'
+                                        
+                                        the 2.guy is part of the attack team and have set
+                                        .filter #a
+                                        this tells the proxy that he is part of the messagegroup 'a'
+
+                                        the 3.guy is free and helps out where help is needed, 
+                                        he wants to get every message of both teams, to do this he defines
+                                        .filter #daf
+                                        this tells the proxy that he is part of the messagegroups 'd' 'a' and 'f'
+
+                                        1.example: say_team get health at upper room#d
+                                          this message will be displayed on the screen of guy 1 and 3
+
+                                        2.example: say_team attack the stairs#a
+                                          this message will be displayed on the screen of guy 2 and 3
+
+                                        3.example: say_team additional help needed at upper room#f
+                                          this message will only be displayed on the screen of guy 3
+
+                                        4.example: this enemy is really stupid :)#ad
+                                          this message will be displayed on the screen of guy 1,2 and 3
+                                        
+                                        rules:
+
+                                        - the messagegroup indicator character can be anywhere in the message if its not at the end 
+                                          use a space between the listed groups and the following message
+                                        - be sure the character used for messagegroup indication is not used for anything else
+                                        - soundtriggers can be send to messagegroups
+                                        - a message can be send to more groups at the same time
+                                        - anyone can belong to more groups at the same time
+
+.fo     .filterown          [on/off]    show/hide own messages send to groups you not belong to!
+                                        have a look at .filter!
+
+the following commands are only available in [NF]Proxy (not in NITRO):
+.ir     .intellireporting   [on/off]    this enables (default) or disables the intelligent reporting. The intelligent
+                                        reporting feature tells you who takes an powerup, if it's a teammember the name
+                                        will be printed. it will tell you when the player with the powerup dies, or if
+                                        someone takes an dropped powerup...
+
+.aar    .alwaysautoreport   [on/off]    force AutoReport to report Powerups even when all teammates are using [NF]Proxy
+                                        this feature is by default enabled!
+                                        
+naming commands:
+----------------
+for all names you can use the Fontcommands that are described in the Easyfont section!
+
+.sqn    .setquadname        [name/off]  sets the name for the quad symbol for proxy reportings like autoreport and %X %T %g %G %p %q  ...
+                                        the parameter off will clear the name!
+
+.spn    .setpentname        [name/off]  like .setquadname just for pent
+
+.srn    .setringname        [name/off]  like .setquadname just for ring
+
+.srn    .setbackpackname    [name/off]  like .setquadname just for backpacks
+
+.srn    .set100hname        [name/off]  like .setquadname just for 100health
+
+.snn    .setnonename        [name/off]  like .setquadname, its used when no powerup has to be reported!
+
+.sran   .setraname          [name/off]  sets the name for the red armor used for proxy reportings like tooktrigger and %T, %X
+                                        the parameter off will clear the name!
+
+.syan   .setyaname          [name/off]  like .setraname just for yellow armor
+
+.sgan   .setganame          [name/off]  like .setraname just for green armor
+
+.sgkn   .setsilverkeyname   [name/off]  sets the name for the silver key used by %X and %T - off clears the name!
+
+.sskn   .setgoldkeyname     [name/off]  sets the name for the gold key used by %X and %T - off clears the name!
+
+.sfn    .setflagname        [name/off]  sets the name for the flag in team fortress mode used by %q %p - off clears the name!
+
+misc commands:
+--------------
+.cdt    .cdtracks           [on/off]    suppress CD Track change on map change.
+
+.cf     .chatflash          [on/off]    when somebody in your vicinity is talking he will flash for a short time!
+
+.e      .echo               [on/off]    when disabled (.echo off) no standard message when setting parameters are printed
+                                        to console (good for nfproxy.cfg file!)
+.fp     .floodprotect       [on/off]    floodprotection protects you from getting the 10 seconds flooding protection penalty time
+                                        when sending more than 4 messages in 4 seconds!
+
+.s      .status                         displays the status (not up to date, yet!)
+
+.mf     .muzzleflash        [on/off]    enables/disables the light effect when other players are shooting.
+
+.rl     .reportlevel        [i k r p]   with reportlevel you choose what %T %X %Y and %t %x %y will report
+                                        i=items k=keys r=runes p=players
+                                        the parameter items can be one of the following:
+                                        number  reported items
+                                        0       Powerups, Armors and Backpacks
+                                        1       Powerups, Armors, Backpacks and Rocketpacks
+                                        2       Powerups, Armors, Backpacks, Rocketpacks and Cellpacks
+                                        3       Powerups, Armors, Backpacks, Rocketpacks, Cellpacks and Healthpacks
+                                        4       ALL! (but no dead people or parts of them :-))
+                                        the parameter keys controlls if keys are reported if set to 0 no keys will reported else
+                                        the gold and the silver key will be reported ...
+                                        you can change the names of the keys using .sskn and .sgkn!
+                                        the next parameter runes controlls if runes are reported if set to 0 no runess will reported
+                                        else the 4 runes will be reported!
+                                        the rune names are taken from the orange mod whare you have a resistance a strength a haste and a 
+                                        regeneration rune!!
+                                        the last parameter turns player pointing on (only for %x %y %t!)
+                                        if set to a value greater than 0 you can point at players and the proxy will report the name
+                                        (if it's a teammember) or Enemy and the powerups/flags the player has!
+                                        example: .reportlevel 1 1 1 1 
+                                        this will report Powerups, Armors, Backpacks, Rocketpacks, Keys, Runes and Players!
+
+.npb    .nopolyblend        [number]    disactivates the polyblend from powerups. In the moment it will not work under water or 
+                                        in lava (and i dont know if its possible!)
+                                        number  who's powerup will not blend you!
+                                        0       OFF
+                                        1       YOU
+                                        2       OTHER (you will not see if anyone has quad, remember this!)
+                                        3       ALL (you will not see if anyone has quad, remember this!)
+
+.bw     .bestweapon [slot imp. w1 /off] this command gives you the possibilty to let the Proxy automatically choose
+                                        the best weapon for you!
+                                        you can use up to 5 different best weapon slots, each slot is enabled by using a impulse,
+                                        which you have to assign to a slot first.
+                                        when using the impulse of a slot the proxy tests the weapons assigned to the slot till 
+                                        it finds a weapon with enought ammo and activates it!
+                                        to disable a weapon slot assign impulse 0 to it!
+                                        to disable the whole best weapon feature use parameter off!
+                                        be sure to use impulses that are not used in the mod you are playing!!!
+                                        you can assign normal weapon impulses to slots, so there is no danger of conflicts with other impulses
+                                        [w1 ...] are the weapons, they will be used in this order!
+                                        they can have values between 1 (axe) and 8 (lightning bold)
+                        
+                                        for example: .bw 1 7 7 5 4 3 2 1
+                                        this will assign slot 1 to impulse 7
+                                        and the weapons :  rocketlauncher supernailgun nailgun supershotgun shotgun and axe
+                                        when using impulse 7 the proxy will test what weapon is available and switch to it!
+                                        
+                                        to disable best weapon use:
+                                        .bw off
+                        
+                                        my preferred settings are:
+                                        .bw 1 6 6 5 4 3 2 1         
+                                        .bw 2 7 7 5 4 3 2 1
+                                        .bw 3 8 8 3 2 1         
+                                        (i use 3 keys for attacking)
+
+.swp    .setweaponpriority [w1 w2 ...]  sets the weapon priority for the %b and %S message commands, which are reporting the best weapon you have
+                                        the default value is 
+                                        .swp 7 8 6 5 4 3 2 1
+                                        this will report Rocket before Shaft!
+                                        if you like to report Shaft before Rocket use:
+                                        .swp 8 7 6 5 4 3 2 1
+
+.er     .easyrecord                     this function creates automatically a name for your demo and starts to record it!
+                                        if you have set your quake directory using the commandline parameter -b number will be a counting on from 0
+                                        if the quake directory is not set (because the proxy runs on another computer or ...) 
+                                        number will be the current date and time in day_month_hour_minute style!
+                                        if you are playing on a none teamplay server the name looks like 
+                                        ffa_map_number.qwd  - for example: ffa_dm2_0.qwd
+                                        if teamplay is enabled the name looks like:
+                                        yourteam_vs_enemyteam_map_number - for example: nf_vs_sk_dm3_0.qwd :-))
+                                        proxy uses playernames in duels.
+                                        the proxy checks if the demo name exists, if yes it increases number and checks again, so
+                                        it don't overwrites older demos from you!
+                                        the proxy just checks the first enemy in the user list for the enemyteam name, so be sure that all players 
+                                        have the right team set, or just use it when in kombat teams the countdown has begun!
+                                        to stop demorecording just type stop, easyrecord only starts the recording!
+                                        for this function you have to set your quake directory using the commandline parameter -b!
+
+.fr     .fastrespawn        [sec./off]  activates the fast respawn function. if enabled you will respawn as fast as possible or after the given amount
+                                        of time. the respawn is done using a jump not a shoot!
+                                        sec. are the seconds after which you wish to respawn, a value of 0 will let you respawn as fast as possible
+                                        a value of 10 after 10 seconds...
+                                        to disable it use off.
+
+.omp    .ownmessageping     [on/off]    if set to off this will kill the message ping from own messages!
+
+.om     .ownmessage         [on/off]    if set to off this will completely remove own message, so only the other will see them! 
+                                        this is just for people who know what they are doing! :-))
+
+.ld     .logdeath           [file/off]  see .logchat
+
+.lc     .logchat            [file/off]  this will log all death/chat messages to the given filename, this is usefull for people who want to use the
+                                        .deathmessagefilter and Gibstats together! or if you want to log just the chats to a file!
+                                        if you want to log both to the same file just use both commands with the same filename!
+                                        if the file for logging already exists the new chat/death log will be appended.
+                                        the logfiles will be created in the proxy directory!
+                                        the parameter off disables the funktions!
+
+.fs     .filterswitches     [on/off]    if enabled the proxy filters the info variables w_switch and b_switch,
+                                        if you get sometimes the message infostring length exceeds or if you get kicked by TeamFortress 
+                                        for skin change (without changing the skin) try this one!
+                                        if you are using my bestweapon feature you don't need them and i don't think that TeamFortress uses them!
+                                        the problem is that qw just accepts userinfo strings less than 64 bytes.
+                                        some mods are using userinfo strings to store their infos there and so the proxy does, this  
+                                        way 64 bytes are quickly overrun.
+
+.ss     .staticsound        [on/off]    this will enable/disable the static sounds of qw (ambient sounds)!
+                                        if you change this setting the changes are applied after the next mapchange!
+                                        (there is no other possibility!)
+
+.ff     .fovfilter          [on/off]    if enabled the proxy filters all fov commands coming from the server, so no mod can change your fov setting!
+                                        this is useful for teamfortress!
+
+.wmf    .weaponmodelfilter  [on/off]    this filters all r_drawviewmodel settings coming from the server, if you like to play without your weapon
+                                        on the screen (set r_drawviewmodel 0) and you don't want to let the server change this - try this one!
+                                        its useful for playing rocketarena in gl without the weapon on screen ...
+
+.gs     .gospectate                     change from player in spectator mode.
+
+.gp     .goplay                         change from spectator in player mode.
+
+.mo     .modified           [on/off]    this commands enables/disables the f_modified check! have a look at the queries section!
+
+.nf     .nofake             [on/off]    enfake all received messages (messages including $\)!
+
+.spm    .shortpowerupmode   [on/off]    controlls the behavior of the messagecommand %P. 
+                                        if set to 'on' the own powerups will be displayed in short form
+                                        else in long form like %p do!
+tracking commands:
+------------------
+.t      .track            [number/off]  switch into the spectator tracking mode of [NF]Proxy!
+                                        this mode can only be enabled in spectator fly free mode 
+                                        and if cl_hightrack is set to 0 (default!)!
+                                        the parameter number tells the proxy what tracking mode to set
+                                        number  tracking mode   description
+                                        0       NORMAL          the normal tracking mode like cl_chasecam but better for recording!
+                                        1       BEST EFFI       track the one with the best efficience
+                                        2       MOST FRAGS      track the one with the most frags
+                                        3       POWERUP/FLAG    track the one who last took a Powerup/Flag
+                                                                The proxy prefers the QUAD Powerup, so if the guy you are
+                                                                tracking has QUAD and anyone else takes a Ring or a Pent the
+                                                                Proxy will not switch!
+                                        4       WHO KILLED WHO  track the one who killed the one that has been tracked before 
+                                                                very funny and very chaotic if the server is overcrowded!
+                                        5       TIMED CHANGE    track one after the other for 30 seconds each
+                                    
+                                        parameter off or changing the specmode from free fly to AutoCamera will 
+                                        disable this feature!
+
+.t+     .trackplus                      track next player in playerlist
+
+.t-     .trackminus                     track the player before in the playerlist
+
+.tf     .trackfree          [on/off]    in the free tracking mode you can freely control the viewangle but the camera
+                                        will still move with the tracked player!
+
+fps saving commands:
+--------------------
+.r2g    .rocket2grenade     [on/off]    this will change the Rocket Model to the Grenade Model
+
+.dbf    .deadbodyfilter     [on/off]    use this to increase your frames per second, it filters all dead
+                                        bodies and body parts out!
+                                        if its enabled and you see a head or a dead body - its a dead player
+                                        who has not respawned yet!
+
+.se     .setexplosion       [number]    sets the style of rockets/grenades explosions. 
+                                        the parameter number can be one of the following:
+                                        number  explosion style
+                                        0       NORMAL
+                                        1       NAIL'S HIT
+                                        2       TARBABY
+                                        3       WIZARD'S HIT
+                                        4       KNIGHT'S HIT
+                                        5       LAVASPLASH
+                                        6       TELEPORT
+                                        7       BIG BLOOD       (have a look at .setbloodlevel !!!)
+                                        8       BLOOD           (the good old one!)
+
+.sbl    .setbloodlevel      [number]    sets the amount of bloodparticles spawned when using blood for explosions!
+                                        number can have a value between 0 and 255, just try it yourself!
+
+.df     .damagefilter       [on/off]    filters the red flash when getting hit when enabled!
+
+.bf     .blendfilter        [on/off]    filters the iteam pickup blend when enabled!
+
+.dcp    .dropclientpackets  [number]    this feature lets you drop less important client packets.
+                                        qwcl sends an info packet every frame to the server, so if you
+                                        use the command cl_maxfps 72 the client tries to send 72 packets 
+                                        per second to the server, which tries to answere every client packet
+                                        (this depends on the rate you are using!)! so a cl_maxfps of 72 
+                                        causes much network traffic. this no problem when you are playing
+                                        in a lan or have an internet connection greater than 128kbit/sec.
+                                        
+                                        CAUTION: using this function produces fake lag and fake pings!
+                                        
+                                        number tells the proxy which packets to drop:
+                                        number      packets to drop                     produced fake lag
+                                        0 or 1      disable this funktion (default!)    0%
+                                        2           drop every 2. client packet         50%
+                                        3           drop every 3. client packet         33%
+                                        4           drop every 4. client packet         25%
+                                        .           .                                   .
+                                        .           .                                   .
+                                        255         drop every 255. client packet       0.3%
+
+                                        because it's not easy to find the correct settings i have added the showpackets
+                                        command, which will show you the network status and gives you the possibility to find out
+                                        what commands like rate and cl_maxfps really do!
+
+.sp     .showpackets        [on/off]    when enabled this displays the actual network status in centerprinted form
+                                        it shows you how many client packes per second and how many server packets per second are
+                                        transmitted and when using .dropclientpackets how many packets are dropped by the proxy!
+                                        this funktion is very usefull for adjusting your rate, cl_maxfps and to configure the 
+                                        .dropclientpackets feature!
+
+.gll    .gllego           [number/off]  switch to 'gl lego' mode. this downscales the gl_max_size for maps but not for skins!
+                                        changing this will only appear after mapchange/reconnect or sometimes after restart. (use it in nfproxy.cfg!)
+                                        this depends on how much models are already cached by the glqwcl client. it will only change
+                                        objects that are not already loaded.
+                                        valid values for number are 2 4 8 16 32 ...
+                                        the standard value of glqwcl is 256, all values less will downgrade the textures.
+                                        a not valid value may force glqwcl to disable all textures!
+                                        off turns this feature off.
+
+                                        WARNING: i've tested this feature with a riva tnt and had no problems, but a beta tester had
+                                                 glqwcl crashes right at startup when using this feature! i will remove his prob if 
+                                                 i find out why this happens!
+
+marking commands:
+-----------------
+NOTE: all manipulations of marks will be saved automatically to the active locations file!
+.m      .mark           [name]          marks an location, if no locations file exists it will create on 
+                                        called bspname.loc (example: dm6.loc). if called without a parameter
+                                        it will show how many marks are set and the curren loc filename!
+                                        you can use the fontcommands described in the Easyfont section!
+
+.sm     .showmark                       spawns a tarbaby at the nearest mark
+
+.dm     .delmark                        delete the nearest mark
+
+.udm    .undodelmark                    undo delmark, if you have deleted an mark by accident you can get
+                                        it back by using this funktion!
+
+.rm     .renamemark     [name]          give the nearest mark a new name
+
+.ll     .loadloc        [filename]      load a locations file (no suffix will be added!)
+                                        all following mark operations will be done to this file!
+
+You can use the short form of the commands or the long one, there is no 
+difference. Every Command starts with an '.' ! Commands with Parameters 
+will report their Status when called without a Parameter.
+
+
+What are the Messagecommands?
+-----------------------------
+%a  Reports your current Armorvalue
+
+%A  Reports your current Armortype
+
+%b  Reports the Best Weapon you have depending on the Weapon Priority set with .swp!
+    in Weapon:Ammo style for example RL:10
+
+%c  Reports the number of cells you have
+
+%C  insert the client name (your name) usefull if you use $\ to hide your name
+
+%d  Reports your last dying Position, it remembers your last dying position without a time
+    limit (requires a loc file  - look at %l)
+
+%D  name of enemy who killed you last!
+
+%e  Reports number of enemies in your vicinity
+
+%E  Reports number of Enemies in your vicinity when you last died
+    it remembers the number of Enemies members for 5 sec. if time is up it reports your 
+    current count of team members (like %e)
+
+%f  Reports the Location you are looking at, using this feature you can create messages like 
+    Attacking RA from GL. The location names and their locations are taken from the loc files
+    so the result of this feature is mostly depending on your own created loc file ... just try it!
+
+%g  in [NF]Proxy:Reports the next respawning Powerups (15sec. bevor the Respawn and 3sec. after)
+                 If no Powerup is Respawning or Powerup Report is blocked by fpd, it will 
+                 report 'Powerup'
+    in NITRO: because of the removement of the poweuptimers %g and %G will only reply with Powerup 
+              or the text set with .setnonename !!!
+
+%G  Reports like %g but adds the location of the powerups
+
+%h  Reports your current Health
+
+%i  Reports the last took Item
+
+%I  Reports the last item that triggered the f_took alias!
+
+%J  insert the name of the guy who joined the server at last! using this you can give him a warm welcome ;-)
+
+%l  Reports your current Location. You will need a 'mapname.loc' file in the
+    directory of the proxy.  (needs a loc file  - look at %l, use .mark to generate loc files!)
+
+%L  Reports your last dying Position (for position lost messages ...), it remembers your
+    last dying position for 5 sec. if time is up it reports your current location...
+    (needs a loc file  - look at %l)
+
+%K  name of enemy you killed last
+
+%N  if used in a message the message will be hidden from yourself. its useful in took messages
+    or respawn/death triggering! this message will just displayed by all others!
+
+%o  Reports number of Team members in your vicinity
+
+%O  Reports number of Team members in your vicinity when you last died
+    it remembers the number of Team members for 5 sec. if time is up it reports your 
+    current count of team members (like %o)
+
+%p  Reports the Powerup you or your Team members have. When u dont have a Powerup
+    or u havent seen a Team Member with an Powerup it will report 'Quad/Ring?'
+
+%P  Reports the Powerups you have! it reports 'Q' for Quad 'P' for Pent 'R' for Ring and 
+    'F' for Flag.
+
+%q  Reports the Powerup of the last seen Enemy/Enemies when no Enemy was seen 
+    having a Powerup it will report 'Powerup'
+
+%r  Reports the Rockets you have
+
+%s  Yeah this is a real highlight! It will automatically Report the current Position
+    of all Team members which are using [NF]Proxy. The positions will just displayed on your 
+    screen, no other teammember will see it - very usefull in Teamplay :-)
+    for further info on this message command have a look at the .intellicom command.
+
+    if you have defined messagegroups you can use them for %s and %S too!
+    just add the messagegroup indicator and the groups at the %s or %S
+    to use messagegroups in %s and %S you have to set a group! (not the group is needed 
+    but the messagegroup indicator! (look at .filter)
+    the following 2 examples are using the '#' character for indication of messagegroups! (.filter #)
+    say %s#ad  - this will report the position of all users in the groups a and d!
+    say %S#za  - this will report the status of all in this groups (z and a) - ignorring the vicinity!!!
+
+%S  is like %s but instead of the position of all teammates it displays their
+    armor/health/bestweapon (best weapon depends on the weapon priority set by the player who reports it) 
+    of all teammates in your vicinity or in the specified teams (messagegroups!)
+    for further info on this message command have a look at the .intellicom.
+
+%t  combines %x and %y to 'Item/Player at Place'
+
+%T  combines %X and %Y to 'Item at Place'
+
+%u  this commands force a new textline in your chat message, the proxy will print your name at
+    the beginning of the new line and prints the rest of the text, until it ends or the next %u/%U is found
+    this way you are able to create easily messages going over up to 4 lines printed with one message!
+    because its treated as one line there is no problem with the nasty flood protection check!
+
+%U  this message command works like %u but it don't print your name at the beginning of a new line!
+
+%v  this will report the name of the player you are pointing at when you are not pointing at anyone it will report the nearest player to you
+    if you are not pointing at anyone it will report the name of the nearest player (only teammate)!
+    this funktion is disabled when pointing is disabled!
+
+%V  like %v but will only report Enemy names!
+
+%w  Reports the current Weapon
+
+%W  Reports the ammo of your current Weapon
+
+%x  Reports the Item you are pointing to or the nearest Objekt if none is pointed,
+    If Pointing is disabled on the server %x %y and %t are automatically switched to %X %Y %T
+    Red/Yellow/Green Armor, Quad, Pent, Ring, 100H, Pack and Players!
+    Players are reported with Powerups/Flags!!!
+    have a look at .reportlevel for (player)pointing configuration!
+    in deathmatchmode 1 it also reports weapons!
+
+%X  Reports the nearest Item to you : Red/Yellow/Green Armor, Quad, Pent, Ring, 100H, Pack
+    in deathmatchmode 1 it also reports weapons!
+
+%y  like %x but reports the Place of the Item/Player. If no Item is found it reports your position!
+
+%Y  like %X but reports the Place of the Item. If no Item is found it reports your position!
+
+%z  reports what you currently need,
+    it checks your health, your armor, your best weapon (when its not available in the current map,
+    the proxy checks for the next available best weapon).
+    if you have your best weapon it checks how much ammo you have for it if its below the limit it will be reported!
+    if you dont have your best weapon but its available in the current map it will report it!
+    if you need more than 2 things, it will report All
+    if you dont need anythink, it will report Nothing
+    you can control this messagecommand using .setneed
+
+Examples of Message Commands: 
+
+say_team %h/%a%A/%b Reports: health/armorvalue+type/rockets to your team members
+say_team %d lost    Reports: last_dying_position lost      example: RA lost
+say_team %l secured Reports: actual_position secured       example: RA secured
+say_team Team %p    Reports: Team actual_powerup_of_team   example: Team Quad/Ring
+say_team Get %T     Reports: Get Item at Place             example: Get RA at RA/RL 
+say_team %s         Reports: Reports the current positions of all [NF]Proxy using 
+                             Team Members (they must have .intellicom enabled!)
+say_team Need %z    Reports: all you currently need :      example: Need Armor/RL
+
+
+
+fpd handling:
+-------------
+With the servervariable fpd you will be able to prevent [NF]Proxy from using Features
+
+2    : block powerup timers
+4    : block soundtrigger messages
+8    : report changes in lag settings (.dcp)
+32   : silence %e reportings
+128  : turn real pointing into nearest object pointing ...
+512  : disable color forcing features 
+1024 : block intelligent reporting funktions
+2048 : disable the intelligent skin feature
+
+Example:  a fpd 3758 will block all features!
+
+
+
+Disclaimer
+----------
+I assume no responsibility for anything of any sort in any way, shape, 
+or form, now, then, henceforeward, in this life (or the next several)
+for any screw-ups or even minor inconveniences this Proxy causes you,
+your family, your relatives, friends, ancestors, associates, employers,
+pets, neighbors, lovers, deities (major AND minor), nor any other person
+- living, dead, or undead - that you have or will ever have any contact 
+with in even the slightest form. This Proxy has been tested and tested
+ad infinitum, so it shouldn't mess with your computer or anything else
+remotely associated with it. But if it DOES, then too damn bad.  
+Don't come cryin' to me. It must be something YOU did!
+
+
+
+Copyright / Permissions
+-----------------------
+[NF]Proxy/NITRO/NLite is Copyright 1998/99 Ralf Niebecker.
+You MAY distribute [NF]Proxy, provided you include this file, with
+no modifications, in the internet without charging money for it.
+If you wish to publish it you have to aks me first!
+
+For contact write to:
+
+Ralf Niebecker
+Duemperstr. 16
+44229 Dortmund
+Germany
+
+
+Quake? and QuakeWorld? are registered trademarks of id Software, Inc.
