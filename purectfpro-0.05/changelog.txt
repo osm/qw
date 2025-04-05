@@ -1,0 +1,35 @@
+0.05:
+Remove Pure CTF 2.12 by Dalcon due to overflow problems
+Added list and whonot commands
+Added rpickup admin command
+
+
+0.04:
+Incorperated Pure CTF 2.12 by Dalcon
+Fixed Runedrop and Quaddrop bugs
+Added teamnames to mvd autorecording
+Added mapaliasses
+
+
+0.03:
+Added mvd autorecording
+MOTD configurable from config
+Changed runes to spawn at matchstart instead of countdown
+Removed specrate
+Temporary removed userkey system
+
+
+0.02:
+Added userkey system for spectators
+Added userlist for spectators
+Added spectators to userlist
+Enhanced ingame and spectator admin start/break
+
+
+0.01:
+Added userkey system
+Added userlist
+Changed admin and ingame break commands for regged only
+Changed votes for regged only
+Added admin spectator countdown break
+Removed mvd version notice in spectator mode

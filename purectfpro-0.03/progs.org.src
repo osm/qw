@@ -1,0 +1,91 @@
+../qwprogs.dat
+
+defs.qc
+
+// Purectf -->
+// *obsolete* puredefs.qc		
+
+defconst.qc		// Constant defines
+deffield.qc		// Entity field defines
+defvars.qc		// Variable defines
+deffuncs.qc		// Function prototypes
+
+infovars.qc		// Serverinfo & localinfo settings
+custom.qc
+purectf.qc
+printing.qc
+timer.qc
+mapnames.qc
+log.qc
+teamtalk.qc
+pureitem.qc
+scores.qc
+setinfo.qc
+freeze.qc
+match.qc
+vote.qc
+admin.qc
+ctfshow.qc
+pingban.qc
+motd.qc
+observer.qc
+multiwep.qc
+commands.qc
+nocheats.qc
+menu.qc
+bot.qc
+// Purectf <--
+
+
+
+
+teamplay.qc
+
+ctfgame.qc
+
+status.qc
+ident.qc
+subs.qc
+combat.qc
+items.qc
+
+grapple.qc //Wedge
+
+
+weapons.qc
+
+telefrag.qc
+
+world.qc
+client.qc
+spectate.qc
+player.qc
+doors.qc
+buttons.qc
+triggers.qc
+plats.qc
+misc.qc
+
+server.qc
+
+// TW -->
+twrunes.qc
+base.qc
+boom.qc
+toss.qc
+horn.qc
+// TW <--
+
+
+// ***purectf*** -->
+mapqueue.qc
+spawn.qc
+mapsnew1.qc
+mapsnew2.qc
+newspots.qc
+maparena.qc
+arena.qc
+mapents.qc
+// ***purectf*** <--
+
+

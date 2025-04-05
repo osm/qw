@@ -1,0 +1,41 @@
+0.03:
+Added mvd autorecording
+MOTD configurable from config
+Changed runes to spawn at matchstart instead of countdown
+Removed specrate
+Temporary removed userkey system
+
+
+0.02:
+Added userkey system for spectators
+Added userlist for spectators
+Added spectators to userlist
+Enhanced ingame and spectator admin start/break
+
+
+0.01:
+Added userkey system
+Added userlist
+Changed admin and ingame break commands for regged only
+Changed votes for regged only
+Added admin spectator countdown break
+Removed mvd version notice in spectator mode
+
+
+Todo:
+GPL the old Pure CTF code
+Add 'list' and 'whonot' commands
+f_version and f_modified server calls
+Clear unused code
+Create a good FFA mod
+Correct physics
+Spectalk
+Better MOTD
+CAM: first person
+CAM: track runes
+CAM: autotracking
+USERID: optional
+USERID: fancy userlist
+USERID: logging
+Capture based?
+
