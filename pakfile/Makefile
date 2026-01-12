@@ -1,4 +1,5 @@
 all:
+	wad -c gfx.wad ./gfxwad
 	pak -f pak2.pak -c \
 		demo.cfg \
 		slime.cfg \
