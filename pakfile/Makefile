@@ -13,4 +13,6 @@ all:
 		skins/white.png \
 		gfx/conback.lmp \
 		gfx/ranking.lmp \
-		textures/charsets/povo5f_slm.png
+		textures/charsets/povo5f_slm.png \
+		textures/schloss/skydark_alpha.png \
+		textures/schloss/skydark_solid.png
