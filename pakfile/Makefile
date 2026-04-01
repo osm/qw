@@ -5,9 +5,7 @@ all:
 		fragfile.dat \
 		slime.cfg \
 		timer_aliases.cfg \
-		timer_binds.cfg \
 		tot_aliases.cfg \
-		tot_binds.cfg \
 		gfx.wad \
 		skins/red.png \
 		skins/white.png \
